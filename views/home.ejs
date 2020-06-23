@@ -1,0 +1,26 @@
+<div class="center">
+
+    <h1><%- lang.home.text %></h1>
+
+    <form id="searchform">
+        <input type="text" placeholder="<%= lang.home.placeholder %>" />
+        <button>
+            <%= lang.home.submit %>
+        </button>
+    </form>
+
+</div>
+
+<script>
+    document.querySelector("#searchform").addEventListener('submit', (event) => {
+        event.preventDefault();
+    	let url = event.target[0].value;
+
+    	let id = /\/?(\d+)/i.exec(url);
+
+        if(id && id[1]){
+        	window.location.href = window.location.href + id[1];
+        }
+
+    });
+</script>

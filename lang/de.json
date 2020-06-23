@@ -1,0 +1,30 @@
+{
+	"description": "Laden Sie Wattpad Geschichten für E-Book Reader, Smartphones, Desktop und mehr kostenlos herunter!",
+	"titlebar": {
+		"home": "Home",
+		"api": "API",
+		"about": "Über uns"
+	},
+	"home": {
+		"text": "Laden Sie Wattpad Geschichten für<br/> E-Book Reader, Smartphones, Desktop und mehr kostenlos herunter!",
+		"placeholder": "Buch URL, Kapitel oder ID eingeben",
+		"submit": "Weiter"
+	},
+	"book": {
+		"download": {
+			"epub": "Download für E-Book Reader (epub)",
+			"html": "Download für PC / Smartphone (html)",
+			"pdf": "Download als PDF (pdf)"
+		},
+		"author": "Autor",
+		"pubDate": "Veröffentlicht",
+		"lang": "Sprache",
+		"loading": {
+			"text": "Bitte warten Sie ein paar Sekunden, während wir Ihren Download vorbereiten..."
+		}
+	},
+	"parts": "Kapitel",
+	"overview": "Übersicht",
+	"next": "Nächstes Kapitel",
+	"startReading": "Jetzt lesen"
+}

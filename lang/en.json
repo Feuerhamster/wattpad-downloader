@@ -1,0 +1,30 @@
+{
+	"description": "Download Wattpad stories for e-book readers, smartphones, desktop and more for free!",
+	"titlebar": {
+		"home": "Home",
+		"api": "API",
+		"about": "About"
+	},
+	"home": {
+		"text": "Download Wattpad stories for<br/> e-book readers, smartphones, desktop and more!",
+		"placeholder": "Enter URL to book, part or id",
+		"submit": "Next"
+	},
+	"book": {
+		"download": {
+			"epub": "Download for E-Book reader (epub)",
+			"html": "Download PC / Smartphone (html)",
+			"pdf": "Download as PDF (pdf)"
+		},
+		"author": "Author",
+		"pubDate": "Published",
+		"lang": "Language",
+		"loading": {
+			"text": "Plese wait a few seconds while we prepare your download..."
+		}
+	},
+	"parts": "Parts",
+	"overview": "Overview",
+	"next": "Next part",
+	"startReading": "Start reading"
+}

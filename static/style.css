@@ -1,0 +1,249 @@
+/*
+* General
+*/
+* {
+    box-sizing: border-box;
+}
+html{
+    min-height: 100%;
+    display: flex;
+}
+body{
+    display: flex;
+    background-color: rgb(250,250,250);
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    min-height: 100%;
+    width: 100%;
+}
+
+/*
+* Titlebar
+*/
+#titlebar{
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.spacer{
+    flex-grow: 1;
+}
+#titlebar > h1{
+    margin: 0px 10px 0px 10px;
+    color: #ff500a;
+    font-size: 32px;
+    font-weight: 500;
+}
+#titlebar > div{
+    display: flex;
+}
+#titlebar a{
+    color: rgb(5,5,5);
+    margin: 0px 10px;
+    font-size: 21px;
+    text-decoration: none;
+}
+#titlebar > #toggle-mobile-nav{
+    display: none;
+}
+#titlebar > div > a:hover{
+    text-decoration: underline;
+}
+
+/*
+* Center box
+*/
+.center{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center > h1{
+    text-align: center;
+    font-weight: 500;
+}
+
+.row{
+    flex-direction: row;
+}
+
+/*
+* Form and input
+*/
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input{
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-size: 18px;
+    outline: 0;
+    margin-bottom: 20px;
+    min-width: 300px;
+    background-color: rgb(240,240,240);
+}
+
+/*
+* Buttons
+*/
+
+button{
+    border: 0;
+    background-color: #ff8241;
+    color: white;
+    font-size: 21px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    outline: 0;
+    margin-bottom: 20px;
+}
+button:hover{
+    background-color: #ee7638;
+}
+/*
+* Book info
+*/
+.book-cover{
+    box-shadow: 1px 1px 5px 1px rgba(70,70,70,0.2);
+    border-radius: 6px;
+    max-height: 400px;
+    max-width: 256px;
+}
+
+.book-info{
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.book-info .avatar{
+    border-radius: 50%;
+    max-height: 45px;
+    margin-left: 5px;
+}
+
+.book-info h3{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.book-info button{
+    font-size: 18px;
+}
+
+/*
+* Modal
+*/
+.modal{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(70,70,70,0.6);
+    justify-content: center;
+    align-items: center;
+}
+.modal > div{
+    display: flex;
+    padding: 30px;
+    box-shadow: 1px 1px 5px 1px rgba(50,50,50,0.2);
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+}
+.modal > div > h1{
+    margin: 0 0 20px 0px;
+    font-weight: 500;
+    font-size: 21px;
+}
+.active{
+    display: flex!important;
+}
+
+/*
+* Loader
+*/
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 48px;
+    height: 48px;
+}
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border: 4px solid #ff500a;
+    border-radius: 50%;
+    animation: lds-ring 0.6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #ff500a transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.15s;
+}
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.1s;
+}
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.05s;
+}
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*
+* Mobile optimization
+*/
+@media only screen and (max-width: 920px) {
+
+    #titlebar > div{
+        position: absolute;
+        top: 95px;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-bottom: 1px solid #eee;
+        padding: 10px;
+        left: 0px;
+    }
+
+    #titlebar > div > a{
+        margin: 5px 0px;
+    }
+
+    #titlebar > #toggle-mobile-nav{
+        display: flex;
+    }
+
+    .row{
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+}

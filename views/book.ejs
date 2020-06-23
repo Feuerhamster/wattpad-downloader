@@ -1,0 +1,64 @@
+<div class="center row">
+
+    <img class="book-cover" src="<%= book.cover %>" />
+
+    <div class="book-info">
+
+        <h1>
+            <%= book.title %>
+        </h1>
+
+        <h3><b><%= lang.book.author %>:</b>&nbsp;<%= book.user.name %> <img class="avatar" src="<%= book.user.avatar %>" /> </h3>
+
+        <h3><b><%= lang.book.pubDate %>:</b>&nbsp;<%= new Date(book.lastPublishedPart.createDate).getFullYear() %></h3>
+
+        <p style="max-width: 500px;">
+            <%= book.description %>
+        </p>
+
+        <button onclick="download('<%= book.id %>', 'epub')"> <%= lang.book.download.epub %> </button>
+        <button onclick="download('<%= book.id %>', 'html')"> <%= lang.book.download.html %> </button>
+
+    </div>
+
+
+</div>
+
+<div id="loading-modal" class="modal">
+    <div>
+        <h1><%= lang.book.loading.text %></h1>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>
+
+<script>
+
+    function download(id, type){
+
+        document.querySelector("#loading-modal").classList.toggle("active");
+
+		axios({
+			url: `${window.location.origin}/api/${id}/download/${type}`,
+			method: 'GET',
+			responseType: 'blob', // important
+		}).then((response) => {
+
+			const url = window.URL.createObjectURL(new Blob([response.data]));
+
+			let filename = /filename=(.+)/i.exec(response.headers['content-disposition']);
+
+			const link = document.createElement('a');
+			link.href = url;
+			link.setAttribute('download', filename[1] ? filename[1] : 'book.' + type);
+
+
+			document.body.appendChild(link);
+			link.click();
+
+			document.querySelector("#loading-modal").classList.toggle("active");
+
+		});
+
+    }
+
+</script>

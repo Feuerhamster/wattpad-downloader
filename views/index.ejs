@@ -6,6 +6,7 @@
         <title>Wattpad downloader</title>
         <meta name="description" content="<%= lang.description %>" />
         <meta name="viewport" content="width=device-width, initial-scale=0.9">
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="style.css" />
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
@@ -13,22 +14,24 @@
     <body>
 
         <div id="titlebar">
-            <h1>Wattpad downloader</h1>
+            <img src="icon.png" onclick="window.location.href = '/'"/>
+            <h1>Wattpad Downloader</h1>
             <span class="spacer"></span>
             <div id="nav">
                 <a href="/"><%= lang.titlebar.home %></a>
-                <a href="/api"><%= lang.titlebar.api %></a>
-                <a href="/about"><%= lang.titlebar.about %></a>
+                <a href="/help"><%= lang.titlebar.help %></a>
                 <a href="https://wattpad.com" target="_blank">Wattpad</a>
             </div>
             <a href="#" onclick="toggleMobileNav(event)" id="toggle-mobile-nav">Menu</a>
         </div>
 
         <%
-            if(book){
+            if(book && page === 'book'){
                 %> <%- include('book', { book, lang }) -%> <%
-            }else if(error){
+            }else if(error && page === 'error'){
                 %> <%- include('error', { error, lang }) -%> <%
+            }else if(page === 'help'){
+                %> <%- include('help', { lang }) -%> <%
             }else{
                 %> <%- include('home', { lang }) -%> <%
             }

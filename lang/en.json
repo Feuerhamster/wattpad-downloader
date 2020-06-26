@@ -2,8 +2,7 @@
 	"description": "Download Wattpad stories for e-book readers, smartphones, desktop and more for free!",
 	"titlebar": {
 		"home": "Home",
-		"api": "API",
-		"about": "About"
+		"about": "Help"
 	},
 	"home": {
 		"text": "Download Wattpad stories for<br/> e-book readers, smartphones, desktop and more!",
@@ -26,5 +25,9 @@
 	"parts": "Parts",
 	"overview": "Overview",
 	"next": "Next part",
-	"startReading": "Start reading"
+	"startReading": "Start reading",
+	"errors": {
+		"bookNotFound": "Sorry but we can't find the book!",
+		"invalidSearch": "We can not parse your entered value.<br/> Please provide a wattpad link to a story or an ID."
+	}
 }

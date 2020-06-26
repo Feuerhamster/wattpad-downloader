@@ -3,6 +3,7 @@
     <h1><%- lang.home.text %></h1>
 
     <form id="searchform">
+        <p id="error-result" class="error"></p>
         <input type="text" placeholder="<%= lang.home.placeholder %>" />
         <button>
             <%= lang.home.submit %>
@@ -12,7 +13,7 @@
 </div>
 
 <script>
-    document.querySelector("#searchform").addEventListener('submit', (event) => {
+    document.querySelector("#searchform").addEventListener("submit", (event) => {
         event.preventDefault();
     	let url = event.target[0].value;
 
@@ -20,6 +21,11 @@
 
         if(id && id[1]){
         	window.location.href = window.location.href + id[1];
+        }else{
+        	document.querySelector("#error-result").innerHTML = "<%- lang.errors.invalidSearch %>";
+        	setTimeout(() => {
+				document.querySelector("#error-result").innerHTML = '';
+            }, 5000);
         }
 
     });

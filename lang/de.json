@@ -1,9 +1,8 @@
 {
 	"description": "Laden Sie Wattpad Geschichten für E-Book Reader, Smartphones, Desktop und mehr kostenlos herunter!",
 	"titlebar": {
-		"home": "Home",
-		"api": "API",
-		"about": "Über uns"
+		"home": "Startseite",
+		"help": "Hilfe"
 	},
 	"home": {
 		"text": "Laden Sie Wattpad Geschichten für<br/> E-Book Reader, Smartphones, Desktop und mehr kostenlos herunter!",
@@ -26,5 +25,9 @@
 	"parts": "Kapitel",
 	"overview": "Übersicht",
 	"next": "Nächstes Kapitel",
-	"startReading": "Jetzt lesen"
+	"startReading": "Jetzt lesen",
+	"errors": {
+		"bookNotFound": "Wir konnten dieses Buch leider nicht finden!",
+		"invalidSearch": "Deine Eingabe kann nicht verarbeitet werden.<br/>Bitte gebe einen Link zu einem Wattpad Buch oder eine ID an."
+	}
 }

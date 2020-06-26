@@ -80,12 +80,20 @@ class Generator{
 
 	}
 
+	/**
+	 * Get book as html
+	 * @param book
+	 * @param parts
+	 * @param langName
+	 * @param lang
+	 * @returns {Promise<*>}
+	 */
 	static async html(book, parts, langName, lang){
 
 		let image = await Wattpad.getImage(book.cover);
 		let avatar = await Wattpad.getImage(book.user.avatar);
 
-		let template = fs.readFileSync('./templates/html.ejs').toString();
+		let template = fs.readFileSync('./templates/htmlv2.ejs').toString();
 
 		return ejs.render(template, { book, parts, image, avatar, langName, lang });
 

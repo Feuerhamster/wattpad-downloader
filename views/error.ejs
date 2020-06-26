@@ -1,0 +1,15 @@
+<div class="center">
+
+    <h1 class="error">
+
+        <%
+        if(error === "book_not_found"){
+        %> <%= lang.errors.bookNotFound %> <%
+        }
+        %>
+
+    </h1>
+
+    <button onclick="window.location.href = '/'"><%= lang.titlebar.home %></button>
+
+</div>

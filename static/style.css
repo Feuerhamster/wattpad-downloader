@@ -39,6 +39,10 @@ body{
     font-size: 32px;
     font-weight: 500;
 }
+#titlebar > img{
+    max-height: 37px;
+    cursor: pointer;
+}
 #titlebar > div{
     display: flex;
 }
@@ -213,6 +217,13 @@ button:hover{
     }
 }
 
+/*
+* Error color
+*/
+.error{
+    color: #d71c1c;
+    text-align: center;
+}
 
 /*
 * Mobile optimization
@@ -221,7 +232,7 @@ button:hover{
 
     #titlebar > div{
         position: absolute;
-        top: 95px;
+        top: 58px;
         width: 100%;
         display: none;
         flex-direction: column;
@@ -234,6 +245,10 @@ button:hover{
 
     #titlebar > div > a{
         margin: 5px 0px;
+    }
+
+    #titlebar > h1{
+        display: none;
     }
 
     #titlebar > #toggle-mobile-nav{

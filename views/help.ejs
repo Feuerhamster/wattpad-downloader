@@ -1,5 +1,11 @@
 <div class="center">
 
-    <h1>Help</h1>
+    <% for(let help of lang.help){ %>
+
+        <h1><%- help.title %></h1>
+
+        <p class="responsive-p"><%- help.text %></p>
+
+    <% } %>
 
 </div>

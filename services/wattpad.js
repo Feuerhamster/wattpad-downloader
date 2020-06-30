@@ -1,5 +1,5 @@
 // Import modules and services
-const axios = require('axios');
+const axios = require("axios");
 const jsdom = require("jsdom");
 
 class Wattpad {
@@ -11,12 +11,12 @@ class Wattpad {
 	 */
 	static async getImage(url){
 		try{
-			let res = await axios.get(url, { responseType: 'arraybuffer' });
+			let res = await axios.get(url, { responseType: "arraybuffer" });
 
-			return Buffer.from(res.data, 'binary').toString('base64');
+			return Buffer.from(res.data, "binary").toString("base64");
 
 		}catch (e) {
-			return null
+			return null;
 		}
 
 	}
@@ -31,7 +31,7 @@ class Wattpad {
 		try {
 
 			let res = await axios.get(`https://www.wattpad.com/v4/parts/${id}?fields=text_url,group(id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags)`,
-				{ headers: { accept: 'application/json' }});
+				{ headers: { accept: "application/json" }});
 
 			return res.data;
 
@@ -51,7 +51,7 @@ class Wattpad {
 		try {
 
 			let res = await axios.get(`https://www.wattpad.com/api/v3/stories/${id}?fields=id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags`,
-				{ headers: { accept: 'application/json' }});
+				{ headers: { accept: "application/json" }});
 
 			return res.data;
 
@@ -89,18 +89,18 @@ class Wattpad {
 
 		const document = new jsdom.JSDOM(text).window.document;
 
-		let pElements = document.querySelectorAll('p');
+		let pElements = document.querySelectorAll("p");
 
-		text = Array.from(pElements).map((el) => `<p>${el.innerHTML}</p>`).join('');
-		text = text.replace(/<br ?\/?>/g, '');
-		text = text.replace(/&nbsp;/g, ' ');
+		text = Array.from(pElements).map((el) => `<p>${el.innerHTML}</p>`).join("");
+		text = text.replace(/<br ?\/?>/g, "");
+		text = text.replace(/&nbsp;/g, " ");
 
 		return text;
 	}
 
 	static formatBookTitle(title){
 
-		return Array.from(title.matchAll(/[a-zA-Z0-9äöüß]+/ig), el => el[0].toLowerCase()).join('-');
+		return Array.from(title.matchAll(/[a-zA-Z0-9äöüß]+/ig), (el) => el[0].toLowerCase()).join("-");
 
 	}
 

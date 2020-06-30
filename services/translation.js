@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 class Translation{
 
@@ -10,13 +10,13 @@ class Translation{
 	 */
 	static loadLanguages(){
 
-		let langs = fs.readdirSync('./lang');
+		let langs = fs.readdirSync("./lang");
 
 		for(let lang of langs){
 
-			let langName = lang.split('.')[0];
+			let langName = lang.split(".")[0];
 
-			Translation.langData[langName] = JSON.parse(fs.readFileSync('./lang/' + lang).toString());
+			Translation.langData[langName] = JSON.parse(fs.readFileSync("./lang/" + lang).toString());
 
 			Translation.langs.push(langName);
 
@@ -46,7 +46,7 @@ class Translation{
 		if(availableLangs){
 			lang = Translation.getLangData(langName);
 		}else{
-			lang = Translation.getLangData('en');
+			lang = Translation.getLangData("en");
 		}
 
 		return { lang, langName };

@@ -12,8 +12,10 @@
 
         <h3><b><%= lang.book.pubDate %>:</b>&nbsp;<%= new Date(book.lastPublishedPart.createDate).getFullYear() %></h3>
 
+        <h3><b><%= lang.parts %>:</b>&nbsp;<%= book.parts.length %></h3>
+
         <p style="max-width: 500px;">
-            <%= book.description %>
+            <%= book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description %>
         </p>
 
         <button onclick="download('<%= book.id %>', 'epub')"> <%= lang.book.download.epub %> </button>
@@ -39,17 +41,17 @@
 
 		axios({
 			url: `${window.location.origin}/api/${id}/download/${type}`,
-			method: 'GET',
-			responseType: 'blob', // important
+			method: "GET",
+			responseType: "blob", // important
 		}).then((response) => {
 
 			const url = window.URL.createObjectURL(new Blob([response.data]));
 
-			let filename = /filename=(.+)/i.exec(response.headers['content-disposition']);
+			let filename = /filename=(.+)/i.exec(response.headers["content-disposition"]);
 
-			const link = document.createElement('a');
+			const link = document.createElement("a");
 			link.href = url;
-			link.setAttribute('download', filename[1] ? filename[1] : 'book.' + type);
+			link.setAttribute("download", filename[1] ? filename[1] : "book." + type);
 
 
 			document.body.appendChild(link);

@@ -4,15 +4,15 @@
 * {
     box-sizing: border-box;
 }
-html{
+html {
     min-height: 100%;
     display: flex;
 }
-body{
+body {
     display: flex;
-    background-color: rgb(250,250,250);
+    background-color: rgb(250, 250, 250);
     flex-direction: column;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     font-size: 18px;
     margin: 0;
     min-height: 100%;
@@ -22,7 +22,7 @@ body{
 /*
 * Titlebar
 */
-#titlebar{
+#titlebar {
     background-color: white;
     border-bottom: 1px solid #eee;
     padding: 10px;
@@ -30,39 +30,39 @@ body{
     display: flex;
     align-items: center;
 }
-.spacer{
+.spacer {
     flex-grow: 1;
 }
-#titlebar > h1{
-    margin: 0px 10px 0px 10px;
+#titlebar > h1 {
+    margin: 0 10px 0 10px;
     color: #ff500a;
     font-size: 32px;
     font-weight: 500;
 }
-#titlebar > img{
+#titlebar > img {
     max-height: 37px;
     cursor: pointer;
 }
-#titlebar > div{
+#titlebar > div {
     display: flex;
 }
-#titlebar a{
-    color: rgb(5,5,5);
-    margin: 0px 10px;
+#titlebar a {
+    color: rgb(5, 5, 5);
+    margin: 0 10px;
     font-size: 21px;
     text-decoration: none;
 }
-#titlebar > #toggle-mobile-nav{
+#titlebar > #toggle-mobile-nav {
     display: none;
 }
-#titlebar > div > a:hover{
+#titlebar > div > a:hover {
     text-decoration: underline;
 }
 
 /*
 * Center box
 */
-.center{
+.center {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -70,25 +70,25 @@ body{
     align-items: center;
 }
 
-.center > h1{
+.center > h1 {
     text-align: center;
     font-weight: 500;
 }
 
-.row{
+.row {
     flex-direction: row;
 }
 
 /*
 * Form and input
 */
-form{
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-input{
+input {
     border: 1px solid #ddd;
     border-radius: 3px;
     padding: 10px 20px;
@@ -96,14 +96,14 @@ input{
     outline: 0;
     margin-bottom: 20px;
     min-width: 300px;
-    background-color: rgb(240,240,240);
+    background-color: rgb(240, 240, 240);
 }
 
 /*
 * Buttons
 */
 
-button{
+button {
     border: 0;
     background-color: #ff8241;
     color: white;
@@ -116,66 +116,70 @@ button{
     outline: 0;
     margin-bottom: 20px;
 }
+
 button:hover{
     background-color: #ee7638;
 }
 /*
 * Book info
 */
-.book-cover{
-    box-shadow: 1px 1px 5px 1px rgba(70,70,70,0.2);
+.book-cover {
+    box-shadow: 1px 1px 5px 1px rgba(70, 70, 70, 0.2);
     border-radius: 6px;
     max-height: 400px;
     max-width: 256px;
 }
 
-.book-info{
+.book-info {
     padding: 20px;
     margin-left: 20px;
 }
 
-.book-info .avatar{
+.book-info .avatar {
     border-radius: 50%;
     max-height: 45px;
     margin-left: 5px;
 }
 
-.book-info h3{
+.book-info h3 {
     display: flex;
     align-items: center;
     font-weight: 500;
 }
 
-.book-info button{
+.book-info button {
     font-size: 18px;
 }
 
 /*
 * Modal
 */
-.modal{
+.modal {
     display: none;
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(70,70,70,0.6);
+    background-color: rgba(70, 70, 70, 0.6);
     justify-content: center;
     align-items: center;
 }
-.modal > div{
+
+.modal > div {
     display: flex;
     padding: 30px;
-    box-shadow: 1px 1px 5px 1px rgba(50,50,50,0.2);
+    box-shadow: 1px 1px 5px 1px rgba(50, 50, 50, 0.2);
     background-color: white;
     flex-direction: column;
     align-items: center;
 }
-.modal > div > h1{
-    margin: 0 0 20px 0px;
+
+.modal > div > h1 {
+    margin: 0 0 20px 0;
     font-weight: 500;
     font-size: 21px;
 }
-.active{
+
+.active {
     display: flex!important;
 }
 
@@ -188,6 +192,7 @@ button:hover{
     width: 48px;
     height: 48px;
 }
+
 .lds-ring div {
     box-sizing: border-box;
     display: block;
@@ -199,15 +204,19 @@ button:hover{
     animation: lds-ring 0.6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #ff500a transparent transparent transparent;
 }
+
 .lds-ring div:nth-child(1) {
     animation-delay: -0.15s;
 }
+
 .lds-ring div:nth-child(2) {
     animation-delay: -0.1s;
 }
+
 .lds-ring div:nth-child(3) {
     animation-delay: -0.05s;
 }
+
 @keyframes lds-ring {
     0% {
         transform: rotate(0deg);
@@ -220,9 +229,27 @@ button:hover{
 /*
 * Error color
 */
-.error{
+.error {
     color: #d71c1c;
     text-align: center;
+}
+
+/*
+* Code element
+*/
+code {
+    padding: 5px;
+    background-color: rgba(230, 230, 230, 0.4);
+    color: rgb(70, 70, 70);
+    border-radius: 2px;
+}
+
+/*
+* Responsive paragraph
+*/
+.responsive-p {
+    width: 60%;
+    text-align: justify;
 }
 
 /*
@@ -230,7 +257,7 @@ button:hover{
 */
 @media only screen and (max-width: 920px) {
 
-    #titlebar > div{
+    #titlebar > div {
         position: absolute;
         top: 58px;
         width: 100%;
@@ -240,25 +267,31 @@ button:hover{
         background-color: white;
         border-bottom: 1px solid #eee;
         padding: 10px;
-        left: 0px;
+        left: 0;
     }
 
-    #titlebar > div > a{
-        margin: 5px 0px;
+    #titlebar > div > a {
+        margin: 5px 0;
     }
 
-    #titlebar > h1{
+    #titlebar > h1 {
         display: none;
     }
 
-    #titlebar > #toggle-mobile-nav{
+    #titlebar > #toggle-mobile-nav {
         display: flex;
     }
 
-    .row{
+    .row {
         flex-direction: column;
         align-items: center;
         padding-top: 20px;
+    }
+
+    .responsive-p {
+        width: 100%;
+        padding: 20px;
+        text-align: justify;
     }
 
 }

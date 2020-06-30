@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 
 <style>
-	*{
+	* {
 		box-sizing: border-box;
 	}
-	body{
+	body {
 		background-color: rgb(245, 245, 245);
-		color: rgb(30,30,30);
-		font-family: 'Arial', sans-serif;
+		color: rgb(30, 30, 30);
+		font-family: "Arial", sans-serif;
 		font-size: 18px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin: 0px;
+		margin: 0;
 	}
 
-	#book-meta{
+	#book-meta {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -24,13 +24,15 @@
 		width: 256px;
 		height: 400px;
 	}
-	#book-meta h1, #book-meta h3, #book-meta p{
+	#book-meta h1,
+	#book-meta h3,
+	#book-meta p {
 		display: flex;
 		text-align: center;
 		font-weight: 500;
 	}
 
-	.part{
+	.part {
 		width: 50%;
 		padding: 20px;
 		margin-top: 40px;
@@ -38,19 +40,20 @@
 		flex-direction: column;
 		line-height: 1.5;
 	}
-	.avatar{
+	.avatar {
 		border-radius: 50%;
 		max-height: 45px;
 		margin-left: 5px;
 	}
-	.book-cover{
-		box-shadow: 1px 1px 5px 1px rgba(70,70,70,0.2);
+	.book-cover {
+		box-shadow: 1px 1px 5px 1px rgba(70, 70, 70, 0.2);
 		border-radius: 6px;
 		max-height: 400px;
 		max-width: 256px;
 	}
 
-	#top-control, #bottom-control{
+	#top-control,
+	#bottom-control {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -60,38 +63,38 @@
 		background-color: white;
 		transition: top 0.3s, bottom 0.3s;
 	}
-	.active{
+	.active {
 		display: flex!important;
 	}
-	#top-control.active{
+	#top-control.active {
 		top: 0;
 	}
-	#bottom-control.active{
+	#bottom-control.active {
 		bottom: 0;
 	}
-	#top-control{
+	#top-control {
 		top: -60px;
 		border-bottom: 1px solid #ddd;
 	}
-	#bottom-control{
+	#bottom-control {
 		flex-direction: column;
 		bottom: -60px;
 	}
 
-	#indicator{
+	#indicator {
 		width: 100%;
 		height: 4px;
 		display: flex;
 		align-items: stretch;
 		background-color: #ddd;
 	}
-	#indicator-bar{
+	#indicator-bar {
 		width: 0;
 		background-color: #ff500a;
 	}
 
 
-	button{
+	button {
 		padding: 10px;
 		background: 0;
 		border: 0;
@@ -99,47 +102,49 @@
 		outline: 0;
 		font-size: 21px;
 	}
-	button:hover{
-		background-color: rgba(0,0,0,0.1);
+	button:hover {
+		background-color: rgba(0, 0, 0, 0.1);
 	}
 
-	footer{
+	footer {
 		width: 100%;
 		padding: 10px;
 		display: flex;
 		justify-content: space-around;
 	}
-	footer > a{
-		color: rgb(120,120,120);
+	footer > a {
+		color: rgb(120, 120, 120);
 	}
 
 	@media only screen and (max-width: 920px) {
-		.part{
+		.part {
 			width: 100%;
 		}
 	}
 
-	.shade{
+	.shade {
 		background-color: rgb(239, 230, 218);
 		color: rgb(21, 18, 15);
 	}
-	.shade #top-control, .shade #bottom-control{
+	.shade #top-control,
+	.shade #bottom-control {
 		background-color: rgb(253, 246, 236);
 		border-color: rgb(203, 186, 168);
 	}
-	.shade #indicator{
+	.shade #indicator {
 		background-color: rgb(203, 186, 168);
 	}
 
-	.dark{
+	.dark {
 		background-color: rgb(0, 0, 0);
 		color: rgb(230, 230, 230);
 	}
-	.dark #top-control, .dark #bottom-control{
+	.dark #top-control,
+	.dark #bottom-control {
 		background-color: rgb(20, 20, 20);
 		border-color: rgb(70, 70, 70);
 	}
-	.dark #indicator{
+	.dark #indicator {
 		background-color: rgb(70, 70, 70);
 	}
 </style>
@@ -156,7 +161,7 @@
 
 		<div class="part" id="book-meta">
 
-			<img class="book-cover" src="https://a.wattpad.com/cover/55647353-256-k774757.jpg"  alt="Cover"/>
+			<img class="book-cover" src="data:image/jpg;base64,<%- image %>"  alt="Cover"/>
 
 			<h1><%= book.title %></h1>
 
@@ -209,57 +214,57 @@
 </html>
 
 <script>
-	const fontList = ['Arial, sans-serif', 'Verdana, sans-serif', 'Cambria, serif', 'cursive', 'monospace'];
-	let scrollsave = localStorage.getItem('scrollsave');
-	let fontsize = localStorage.getItem('fontsize');
-	let colormode = localStorage.getItem('colormode');
-	let font = localStorage.getItem('font');
-	const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+	const fontList = ["Arial, sans-serif", "Verdana, sans-serif", "Cambria, serif", "cursive", "monospace"];
+	let scrollsave = localStorage.getItem("scrollsave");
+	let fontsize = localStorage.getItem("fontsize");
+	let colormode = localStorage.getItem("colormode");
+	let font = localStorage.getItem("font");
+	const userPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 	if(scrollsave){
 		window.scrollTo(0, parseInt(scrollsave));
 	}
 	if(fontsize){
-		document.querySelector('body').style.fontSize = fontsize + 'px';
-		document.querySelector('#font-size').innerHTML = fontsize.toString();
+		document.querySelector("body").style.fontSize = fontsize + "px";
+		document.querySelector("#font-size").innerHTML = fontsize.toString();
 	}
-	if(colormode && colormode === 'shade'){
-		document.body.classList.add('shade');
-		document.querySelector('#colormode-button').innerHTML = '🌑';
-	}else if((colormode && colormode === 'dark') || (userPrefersDark && colormode !== 'light')){
-		document.body.classList.add('dark');
-		document.querySelector('#colormode-button').innerHTML = '💡';
+	if(colormode && colormode === "shade"){
+		document.body.classList.add("shade");
+		document.querySelector("#colormode-button").innerHTML = "🌑";
+	}else if((colormode && colormode === "dark") || (userPrefersDark && colormode !== "light")){
+		document.body.classList.add("dark");
+		document.querySelector("#colormode-button").innerHTML = "💡";
 	}
 	if(font){
 		let f = parseInt(font);
 		document.body.style.fontFamily = fontList[f];
 	}
 
-	window.addEventListener('click', (event) => {
+	window.addEventListener("click", (event) => {
 
-		if(!event.path.find((el) => el.id === 'top-control' || el.id === 'bottom-control')){
-			document.querySelector('#top-control').classList.toggle('active');
-			document.querySelector('#bottom-control').classList.toggle('active');
+		if(!event.path.find((el) => el.id === "top-control" || el.id === "bottom-control")){
+			document.querySelector("#top-control").classList.toggle("active");
+			document.querySelector("#bottom-control").classList.toggle("active");
 		}
 
 	});
 
-	window.addEventListener('scroll', (event) => {
+	window.addEventListener("scroll", (event) => {
 
 		let currentScroll = Math.round(window.scrollY);
 		let maxScroll = document.body.offsetHeight - window.innerHeight
 
 		let percentScrolled = Math.round((currentScroll / maxScroll) * 100);
-		document.querySelector('#indicator-bar').style.width = percentScrolled + '%';
+		document.querySelector("#indicator-bar").style.width = percentScrolled + "%";
 
 	});
 
 	setInterval(() => {
-		localStorage.setItem('scrollsave', Math.round(window.scrollY).toString());
+		localStorage.setItem("scrollsave", Math.round(window.scrollY).toString());
 	}, 8000);
 
 	function changeFontSize(increase){
 
-		let style = window.getComputedStyle(document.body, null).getPropertyValue('font-size');
+		let style = window.getComputedStyle(document.body, null).getPropertyValue("font-size");
 		let fontSize = parseFloat(style);
 		let newFontSize;
 
@@ -272,36 +277,36 @@
 			return;
 		}
 
-		document.querySelector('body').style.fontSize = newFontSize + 'px';
-		document.querySelector('#font-size').innerHTML = newFontSize.toString();
-		localStorage.setItem('fontsize', newFontSize.toString());
+		document.querySelector("body").style.fontSize = newFontSize + "px";
+		document.querySelector("#font-size").innerHTML = newFontSize.toString();
+		localStorage.setItem("fontsize", newFontSize.toString());
 
 	}
 
 	function changeColorMode(){
 
-		if(document.body.classList.contains('shade')){
+		if(document.body.classList.contains("shade")){
 
-			document.body.classList.remove('shade');
-			document.body.classList.add('dark');
-			localStorage.setItem('colormode', 'dark');
+			document.body.classList.remove("shade");
+			document.body.classList.add("dark");
+			localStorage.setItem("colormode", "dark");
 
-			document.querySelector('#colormode-button').innerHTML = '💡';
+			document.querySelector("#colormode-button").innerHTML = "💡";
 
-		}else if(document.body.classList.contains('dark')){
+		}else if(document.body.classList.contains("dark")){
 
-			document.body.classList.remove('dark');
-			localStorage.setItem('colormode', 'light');
+			document.body.classList.remove("dark");
+			localStorage.setItem("colormode", "light");
 
-			document.querySelector('#colormode-button').innerHTML = '🌖';
+			document.querySelector("#colormode-button").innerHTML = "🌖";
 
 		}else{
 
-			document.body.classList.remove('dark');
-			document.body.classList.add('shade');
-			localStorage.setItem('colormode', 'shade');
+			document.body.classList.remove("dark");
+			document.body.classList.add("shade");
+			localStorage.setItem("colormode", "shade");
 
-			document.querySelector('#colormode-button').innerHTML = '🌑';
+			document.querySelector("#colormode-button").innerHTML = "🌑";
 
 		}
 
@@ -309,16 +314,16 @@
 
 	function changeFont(){
 
-		let currentFont = window.getComputedStyle(document.body, null).getPropertyValue('font-family');
+		let currentFont = window.getComputedStyle(document.body, null).getPropertyValue("font-family");
 
 		let i = fontList.indexOf(currentFont);
 
 		if(i >= 0 && i < fontList.length-1){
 			document.body.style.fontFamily = fontList[i + 1];
-			localStorage.setItem('font', (i + 1).toString());
+			localStorage.setItem("font", (i + 1).toString());
 		}else{
 			document.body.style.fontFamily = fontList[0];
-			localStorage.setItem('font', '0');
+			localStorage.setItem("font", "0");
 		}
 
 	}

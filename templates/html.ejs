@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 
 <style>
-	*{
+	* {
 		box-sizing: border-box;
 	}
-	body{
-		background-color: rgb(245,245,245);
-		color: rgb(30,30,30);
-		font-family: 'Arial', sans-serif;
+	body {
+		background-color: rgb(245, 245, 245);
+		color: rgb(30, 30, 30);
+		font-family: "Arial", sans-serif;
 		font-size: 18px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin: 0px;
 	}
-	#titlebar{
+	#titlebar {
 		background-color: white;
 		border-bottom: 1px solid #eee;
 		padding: 10px;
@@ -22,28 +22,28 @@
 		display: flex;
 		align-items: center;
 	}
-	.spacer{
+	.spacer {
 		flex-grow: 1;
 	}
-	#titlebar > h1{
-		margin: 0px 10px 0px 10px;
+	#titlebar > h1 {
+		margin: 0 10px 0 10px;
 		color: #ff500a;
 		font-size: 32px;
 		font-weight: 500;
 	}
-	#titlebar > a{
-		color: rgb(5,5,5);
-		margin: 0px 10px;
+	#titlebar > a {
+		color: rgb(5, 5, 5);
+		margin: 0 10px;
 		font-size: 21px;
 		text-decoration: none;
 	}
-	#titlebar > a:hover{
+	#titlebar > a:hover {
 		text-decoration: underline;
 	}
-	#parts{
+	#parts {
 		flex-direction: column;
 	}
-	#parts > a{
+	#parts > a {
 		flex-direction: column;
 		color: rgb(30, 30, 30);
 		text-decoration: none;
@@ -51,15 +51,15 @@
 		font-size: 24px;
 		padding: 15px;
 	}
-	#parts > a:hover{
+	#parts > a:hover {
 		color: #ff874b;
 	}
-	#book-meta{
+	#book-meta {
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 	}
-	#book-meta > div{
+	#book-meta > div {
 		display: flex;
 		flex-direction: column;
 		padding: 30px;
@@ -68,39 +68,39 @@
 		width: 256px;
 		height: 400px;
 	}
-	#book-meta h3{
+	#book-meta h3 {
 		display: flex;
 		align-items: center;
 		font-weight: 500;
 	}
-	.page{
+	.page {
 		width: 50%;
 		padding: 20px;
 		display: none;
 		flex-direction: column;
 		line-height: 1.5;
 	}
-	.page > h1{
+	.page > h1 {
 		text-align: center;
 	}
-	.active{
+	.active {
 		display: flex;
 	}
-	.hide{
+	.hide {
 		display: none;
 	}
-	.avatar{
+	.avatar {
 		border-radius: 50%;
 		max-height: 45px;
 		margin-left: 5px;
 	}
-	.book-cover{
+	.book-cover {
 		box-shadow: 1px 1px 5px 1px rgba(70,70,70,0.2);
 		border-radius: 6px;
 		max-height: 400px;
 		max-width: 256px;
 	}
-	button{
+	button {
 		border: 0;
 		background-color: #ff8241;
 		color: white;
@@ -113,31 +113,32 @@
 		outline: 0;
 		margin-bottom: 20px;
 	}
-	button:hover{
+	button:hover {
 		background-color: #ee7638;
 	}
 	@media only screen and (max-width: 920px) {
-		.page{
+		.page {
 			width: 100%;
 		}
-		#book-meta{
+		#book-meta {
 			flex-direction: column;
 			align-items: center;
 		}
-		#book-meta > div{
+		#book-meta > div {
 			align-items: center;
 		}
 	}
 	@media (prefers-color-scheme: dark) {
-		body{
+		body {
 			background-color: rgb(20,20,20);
 			color: rgb(240,240,240);
 		}
-		#titlebar{
+		#titlebar {
 			background-color: rgb(40,40,40);
 			border-color: rgb(70,70,70);
 		}
-		#titlebar > h1, #titlebar > a{
+		#titlebar > h1,
+		#titlebar > a {
 			color: white;
 		}
 		#parts > a {

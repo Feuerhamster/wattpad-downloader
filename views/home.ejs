@@ -2,6 +2,9 @@
 
     <h1><%- lang.home.text %></h1>
 
+    <p><%- lang.home.urlDescription %></p>
+    <code>https://www.wattpad.<b style="color: #ee4a4a">ml</b>/story/12345-a-story</code>
+
     <form id="searchform">
         <p id="error-result" class="error"></p>
         <input type="text" placeholder="<%= lang.home.placeholder %>" />
@@ -24,7 +27,7 @@
         }else{
         	document.querySelector("#error-result").innerHTML = "<%- lang.errors.invalidSearch %>";
         	setTimeout(() => {
-				document.querySelector("#error-result").innerHTML = '';
+				document.querySelector("#error-result").innerHTML = "";
             }, 5000);
         }
 

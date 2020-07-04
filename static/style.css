@@ -4,10 +4,12 @@
 * {
     box-sizing: border-box;
 }
+
 html {
     min-height: 100%;
     display: flex;
 }
+
 body {
     display: flex;
     background-color: rgb(250, 250, 250);
@@ -30,31 +32,38 @@ body {
     display: flex;
     align-items: center;
 }
+
 .spacer {
     flex-grow: 1;
 }
+
 #titlebar > h1 {
     margin: 0 10px 0 10px;
     color: #ff500a;
     font-size: 32px;
     font-weight: 500;
 }
+
 #titlebar > img {
     max-height: 37px;
     cursor: pointer;
 }
+
 #titlebar > div {
     display: flex;
 }
+
 #titlebar a {
     color: rgb(5, 5, 5);
     margin: 0 10px;
     font-size: 21px;
     text-decoration: none;
 }
+
 #titlebar > #toggle-mobile-nav {
     display: none;
 }
+
 #titlebar > div > a:hover {
     text-decoration: underline;
 }

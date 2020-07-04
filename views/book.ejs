@@ -15,7 +15,7 @@
         <h3><b><%= lang.parts %>:</b>&nbsp;<%= book.parts.length %></h3>
 
         <p style="max-width: 500px;">
-            <%= book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description %>
+            <%= book.description && book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description %>
         </p>
 
         <button onclick="download('<%= book.id %>', 'epub')"> <%= lang.book.download.epub %> </button>

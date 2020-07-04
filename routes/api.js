@@ -83,6 +83,6 @@ router.get("/:id/download/:format", async (req, res) => {
 		res.status(400).send({ error: "unknown_format", formats: ["epub", "html"] });
 	}
 
-})
+});
 
 module.exports = router;

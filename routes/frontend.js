@@ -19,11 +19,18 @@ router.get(["/", "/help", "/privacy"], async (req, res) => {
 /*
 * Book view
 * */
-router.get(/^\/(\d+)$/, async (req, res) => {
+router.get(/^\/((b)-)?(\d+)$/, async (req, res) => {
 
 	let { lang, langName } = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
 
-	let book = await Wattpad.tryGetBook(req.params[0]);
+	let book = null;
+
+	if(req.params[1] === 'b'){
+		book = await Wattpad.getBookById(req.params[2]);
+	}else{
+		book = await Wattpad.getBookByPartId(req.params[2]);
+		book = book ? book.group : null;
+	}
 
 	if(book){
 		res.render("index", { book, error: null, lang, langName, page: "book" });
@@ -37,9 +44,12 @@ router.get(/^\/(\d+)$/, async (req, res) => {
 /*
 * Redirect if url is directly from wattpad
 * */
-router.get(/(story\/)?(\d+)-?(.+)?/, async (req, res) => {
+router.get(/((story)\/)?(\d+)-?(.+)?/, async (req, res) => {
 
-	res.redirect("/" + req.params[1]);
+	// If id is from book (indicated by /story in the url) then redirect with "b-" before the id.
+	// This has to be done because the book view endpoint must know if its a book or a part to get the data from
+	// Without this, it could happen that a book has the same id as a part and a different book would result
+	res.redirect(`/${req.params[1] ? 'b-' : ''}${req.params[2]}`);
 
 });
 

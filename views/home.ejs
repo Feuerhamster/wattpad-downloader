@@ -20,10 +20,16 @@
         event.preventDefault();
     	let url = event.target[0].value;
 
-    	let id = /\/?(\d+)/i.exec(url);
+    	let id = /\/?((story)\/)?(\d+)/i.exec(url);
 
-        if(id && id[1]){
-        	window.location.href = window.location.href + id[1];
+        if(id && id[3]){
+
+            if(id[2] === "story"){
+                window.location.href = window.location.href + 'b-' + id[3];
+            }else{
+                window.location.href = window.location.href + id[3];
+            }
+
         }else{
         	document.querySelector("#error-result").innerHTML = "<%- lang.errors.invalidSearch %>";
         	setTimeout(() => {

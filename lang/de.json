@@ -1,12 +1,12 @@
 {
-	"description": "Lade Dir Wattpad-Geschichten für Deinen E-Book Reader, Dein Smartphone, Deinen Desktop-PC und andere Plattformen kostenlos herunter!",
+	"description": "Lade Dir Wattpad-Geschichten für Deinen E-Book-Reader, Dein Smartphone, Deinen Desktop-PC und andere Plattformen kostenlos herunter!",
 	"titlebar": {
 		"home": "Startseite",
 		"help": "Hilfe",
 		"privacy": "Datenschutz"
 	},
 	"home": {
-		"text": "Lade Wattpad-Geschichten für<br/> E-Book Reader, Smartphones, Desktop-PCs und weitere Plattformen kostenlos herunter!",
+		"text": "Lade Wattpad-Geschichten für<br/> E-Book-Reader, Smartphones, Desktop-PCs und weitere Plattformen kostenlos herunter!",
 		"urlDescription": "Öffne eine Geschichte auf Wattpad und ändere die Adresse von wattpad<b>.com</b> zu wattpad<b>.ml</b>",
 		"placeholder": "Buch URL, Kapitel oder ID eingeben",
 		"submit": "Weiter"

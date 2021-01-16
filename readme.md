@@ -1,7 +1,9 @@
 # Wattpad Downloader
 Download Wattpad stories for e-book readers, smartphones, desktop and more for free!
 
-This software based on nodejs, express and ejs can fetch books from wattpad and convert it into a .epub 
+This software based on nodejs, express and ejs can fetch stories from Wattpad and convert it into an EPUB file or a full functional HTML reader.
+
+**https://wattpad.ml**
 
 ## Installation
 1. Clone / download the repository

@@ -46,6 +46,7 @@ body {
 
 #titlebar > img {
     max-height: 37px;
+    border-radius: 3px;
     cursor: pointer;
 }
 
@@ -82,10 +83,19 @@ body {
 .center > h1 {
     text-align: center;
     font-weight: 500;
+    max-width: 750px;
 }
 
 .row {
     flex-direction: row;
+}
+
+.page {
+    padding: 50px;
+}
+
+.page > p {
+    max-width: 750px;
 }
 
 /*
@@ -104,8 +114,12 @@ input {
     font-size: 18px;
     outline: 0;
     margin-bottom: 20px;
-    min-width: 300px;
+    min-width: 350px;
     background-color: rgb(240, 240, 240);
+}
+
+input::placeholder {
+    text-align: center;
 }
 
 /*
@@ -165,7 +179,9 @@ button:hover {
 */
 .modal {
     display: none;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(70, 70, 70, 0.6);
@@ -176,6 +192,8 @@ button:hover {
 .modal > div {
     display: flex;
     padding: 30px;
+    margin: 10px;
+    border-radius: 3px;
     box-shadow: 1px 1px 5px 1px rgba(50, 50, 50, 0.2);
     background-color: white;
     flex-direction: column;
@@ -253,13 +271,6 @@ code {
     border-radius: 2px;
 }
 
-/*
-* Responsive paragraph
-*/
-.responsive-p {
-    width: 60%;
-    text-align: justify;
-}
 
 /*
 * Mobile optimization
@@ -294,13 +305,10 @@ code {
     .row {
         flex-direction: column;
         align-items: center;
-        padding-top: 20px;
     }
 
-    .responsive-p {
-        width: 100%;
-        padding: 20px;
-        text-align: justify;
+    .book-info {
+        text-align: center;
     }
 
 }

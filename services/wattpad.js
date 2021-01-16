@@ -98,6 +98,11 @@ class Wattpad {
 		return text;
 	}
 
+	/**
+	 * Convert the book title to a file name friendly slug
+	 * @param title
+	 * @returns {string}
+	 */
 	static formatBookTitle(title){
 
 		return Array.from(title.matchAll(/[a-zA-Z0-9äöüß]+/ig), (el) => el[0].toLowerCase()).join("-");

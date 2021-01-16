@@ -6,13 +6,41 @@ const Wattpad = require("../services/wattpad");
 const Translation = require("../services/translation");
 
 /*
+* Language middleware to load translation
+* */
+router.use((req, res, next) => {
+
+	// Get the first accepted language of the specified languages from the accept-language header based on the available languages.
+	req.trans = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
+
+	next();
+
+});
+
+/*
 * Homepage
 * */
-router.get(["/", "/help", "/privacy"], async (req, res) => {
+router.get("/", async (req, res) => {
 
-	let { lang, langName } = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
+	res.render("home", req.trans);
 
-	res.render("index", { book: null, error: null, lang, langName, page: req.url.substr(1) });
+});
+
+/*
+ * Help page
+ */
+router.get("/help", (req, res) => {
+
+	res.render("help", req.trans);
+
+});
+
+/*
+ * Privacy page
+ */
+router.get("/privacy", (req, res) => {
+
+	res.render("privacy", req.trans);
 
 });
 
@@ -21,23 +49,20 @@ router.get(["/", "/help", "/privacy"], async (req, res) => {
 * */
 router.get(/^\/((b)-)?(\d+)$/, async (req, res) => {
 
-	let { lang, langName } = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
+	let book;
 
-	let book = null;
-
-	if(req.params[1] === 'b'){
+	if(req.params[1] === "b") {
 		book = await Wattpad.getBookById(req.params[2]);
-	}else{
+	} else {
 		book = await Wattpad.getBookByPartId(req.params[2]);
 		book = book ? book.group : null;
 	}
 
 	if(book){
-		res.render("index", { book, error: null, lang, langName, page: "book" });
+		res.render("book", { book, lang: req.trans.lang, langName: req.trans.langName });
 	}else{
-		res.render("index", { book: null, error: "book_not_found", lang, langName, page: "error" });
+		res.render("error", { error: "book_not_found", lang: req.trans.lang, langName: req.trans.langName });
 	}
-
 
 });
 
@@ -49,7 +74,7 @@ router.get(/((story)\/)?(\d+)-?(.+)?/, async (req, res) => {
 	// If id is from book (indicated by /story in the url) then redirect with "b-" before the id.
 	// This has to be done because the book view endpoint must know if its a book or a part to get the data from
 	// Without this, it could happen that a book has the same id as a part and a different book would result
-	res.redirect(`/${req.params[1] ? 'b-' : ''}${req.params[2]}`);
+	res.redirect(`/${req.params[1] ? "b-" : ""}${req.params[2]}`);
 
 });
 

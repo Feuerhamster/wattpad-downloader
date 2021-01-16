@@ -1,66 +1,50 @@
-<div class="center row">
+<!DOCTYPE html>
 
-    <img class="book-cover" src="<%= book.cover %>" />
+<html lang="<%= langName %>">
 
-    <div class="book-info">
+    <%- include("partials/head", { lang }) %>
 
-        <h1>
-            <%= book.title %>
-        </h1>
+    <body>
 
-        <h3><b><%= lang.book.author %>:</b>&nbsp;<%= book.user.name %> <img class="avatar" src="<%= book.user.avatar %>" /> </h3>
+        <%- include("partials/titlebar", { lang }) %>
 
-        <h3><b><%= lang.book.pubDate %>:</b>&nbsp;<%= new Date(book.lastPublishedPart.createDate).getFullYear() %></h3>
+        <div class="page center row">
 
-        <h3><b><%= lang.parts %>:</b>&nbsp;<%= book.parts.length %></h3>
+            <img class="book-cover" src="<%= book.cover %>" alt="cover"/>
 
-        <p style="max-width: 500px;">
-            <%= book.description && book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description %>
-        </p>
+            <div class="book-info">
 
-        <button onclick="download('<%= book.id %>', 'epub')"> <%= lang.book.download.epub %> </button>
-        <button onclick="download('<%= book.id %>', 'html')"> <%= lang.book.download.html %> </button>
+                <h1>
+                    <%= book.title %>
+                </h1>
 
-    </div>
+                <h3><b><%= lang.book.author %>:</b>&nbsp;<%= book.user.name %> <img class="avatar" src="<%= book.user.avatar %>" alt="avatar" /> </h3>
 
+                <h3><b><%= lang.book.pubDate %>:</b>&nbsp;<%= new Date(book.lastPublishedPart.createDate).getFullYear() %></h3>
 
-</div>
+                <h3><b><%= lang.parts %>:</b>&nbsp;<%= book.parts.length %></h3>
 
-<div id="loading-modal" class="modal">
-    <div>
-        <h1><%= lang.book.loading.text %></h1>
-        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    </div>
-</div>
+                <p style="max-width: 500px;">
+                    <%- book.description && book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description %>
+                </p>
 
-<script>
+                <button onclick="download('<%= book.id %>', 'epub')"> <%= lang.book.download.epub %> </button>
+                <button onclick="download('<%= book.id %>', 'html')"> <%= lang.book.download.html %> </button>
 
-    function download(id, type){
-
-        document.querySelector("#loading-modal").classList.toggle("active");
-
-		axios({
-			url: `${window.location.origin}/api/${id}/download/${type}`,
-			method: "GET",
-			responseType: "blob", // important
-		}).then((response) => {
-
-			const url = window.URL.createObjectURL(new Blob([response.data]));
-
-			let filename = /filename=(.+)/i.exec(response.headers["content-disposition"]);
-
-			const link = document.createElement("a");
-			link.href = url;
-			link.setAttribute("download", filename[1] ? filename[1] : "book." + type);
+            </div>
 
 
-			document.body.appendChild(link);
-			link.click();
+        </div>
 
-			document.querySelector("#loading-modal").classList.toggle("active");
+        <div id="loading-modal" class="modal">
+            <div>
+                <h1><%= lang.book.loading.text %></h1>
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>
 
-		});
+    </body>
 
-    }
+</html>
 
-</script>
+<script src="index.js"></script>

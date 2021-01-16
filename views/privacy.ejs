@@ -1,3 +1,21 @@
-<div style="padding: 20px;">
-    <%- lang.privacy %>
-</div>
+<!DOCTYPE html>
+
+<html lang="<%= langName %>">
+
+    <%- include("partials/head", { lang }) %>
+
+    <body>
+
+        <%- include("partials/titlebar", { lang }) %>
+
+        <div class="page">
+
+            <%- lang.privacy %>
+
+        </div>
+
+    </body>
+
+</html>
+
+<script src="index.js"></script>

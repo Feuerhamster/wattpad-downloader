@@ -4,9 +4,10 @@ const JSZip = require("jszip");
 const axios = require("axios");
 
 const Wattpad = require("./wattpad");
-const Translations = require("./translation");
 
 class Generator{
+
+	static availableFormats = ["epub", "html"];
 
 	/**
 	 * Generate an epub (zip) file

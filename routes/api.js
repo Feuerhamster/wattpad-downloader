@@ -1,4 +1,4 @@
-// import modules
+// Import modules
 const express = require("express");
 const router = express.Router();
 const stream = require("stream");
@@ -8,46 +8,29 @@ const Generator = require("../services/generator");
 const Translation = require("../services/translation");
 
 /*
-* Get book meta data by part id
-* */
-router.get("/:id", async (req, res) => {
-
-	let book = await Wattpad.tryGetBook(req.params.id);
-
-	// Cancel if book can not be fetched
-	if(book){
-		res.send(book);
-	}else{
-		res.status(404).send({ error: "book_not_found" });
-	}
-
-});
-
-/*
-* Get all parts
-* */
-router.get("/:id/parts", async (req, res) => {
-
-	let bookData = await Wattpad.tryGetBook(req.params.id);
-
-	// Get parts
-	let parts = await Wattpad.getParts(bookData.parts);
-
-	if(bookData.parts.length === parts.length){
-		res.send(parts);
-	}else{
-		res.status(409).end();
-	}
-
-});
-
-/*
 * Get downloadable book
 * */
 router.get("/:id/download/:format", async (req, res) => {
 
+	// Check if format is available
+	if(!Generator.availableFormats.includes(req.params.format)) {
+
+		res.status(400).send({ error: "unknown_format", formats: Generator.availableFormats });
+
+		console.log(`[${new Date().toISOString()}] Converter: user tried to convert story into "${req.params.format}"`);
+
+		return;
+
+	}
+
 	// Get book data
-	let bookData = await Wattpad.tryGetBook(req.params.id);
+	let bookData = await Wattpad.getBookById(req.params.id);
+
+	// Can't get book
+	if(!bookData) {
+		res.status(404).send({ error: "book_not_found" });
+		return;
+	}
 
 	// Get parts
 	let parts = await Wattpad.getParts(bookData.parts);
@@ -56,7 +39,7 @@ router.get("/:id/download/:format", async (req, res) => {
 	let { lang, langName } = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
 
 
-	if(req.params.format === "epub"){
+	if(req.params.format === "epub") {
 
 		let epub = await Generator.epub(bookData, parts);
 
@@ -70,7 +53,7 @@ router.get("/:id/download/:format", async (req, res) => {
 
 		readStream.pipe(res);
 
-	}else if(req.params.format === "html"){
+	} else if(req.params.format === "html") {
 
 		let html = await Generator.html(bookData, parts, langName, lang);
 
@@ -79,9 +62,9 @@ router.get("/:id/download/:format", async (req, res) => {
 
 		res.send(html);
 
-	}else{
-		res.status(400).send({ error: "unknown_format", formats: ["epub", "html"] });
 	}
+
+	console.log(`[${new Date().toISOString()}] Converter: converted "${bookData.title}" (${req.params.id}) to "${req.params.format}"`);
 
 });
 

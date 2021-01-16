@@ -1,41 +1,32 @@
-<div class="center">
+<!DOCTYPE html>
 
-    <h1><%- lang.home.text %></h1>
+<html lang="<%= langName %>">
 
-    <p><%- lang.home.urlDescription %></p>
-    <code>https://www.wattpad.<b style="color: #ee4a4a">ml</b>/story/12345-a-story</code>
+    <%- include("partials/head", { lang }) %>
 
-    <form id="searchform">
-        <p id="error-result" class="error"></p>
-        <input type="text" placeholder="<%= lang.home.placeholder %>" />
-        <button>
-            <%= lang.home.submit %>
-        </button>
-    </form>
+    <body>
 
-</div>
+        <%- include("partials/titlebar", { lang }) %>
 
-<script>
-    document.querySelector("#searchform").addEventListener("submit", (event) => {
-        event.preventDefault();
-    	let url = event.target[0].value;
+        <div class="page center">
 
-    	let id = /\/?((story)\/)?(\d+)/i.exec(url);
+            <h1><%- lang.home.text %></h1>
 
-        if(id && id[3]){
+            <p><%- lang.home.urlDescription %></p>
+            <code>https://www.wattpad.<b style="color: #ee4a4a">ml</b>/story/12345-a-story</code>
 
-            if(id[2] === "story"){
-                window.location.href = window.location.href + 'b-' + id[3];
-            }else{
-                window.location.href = window.location.href + id[3];
-            }
+            <form id="searchform">
+                <p id="error-result" class="error"></p>
+                <input type="text" placeholder="<%= lang.home.placeholder %>" />
+                <button>
+                    <%= lang.home.submit %>
+                </button>
+            </form>
 
-        }else{
-        	document.querySelector("#error-result").innerHTML = "<%- lang.errors.invalidSearch %>";
-        	setTimeout(() => {
-				document.querySelector("#error-result").innerHTML = "";
-            }, 5000);
-        }
+        </div>
 
-    });
-</script>
+    </body>
+
+</html>
+
+<script src="index.js"></script>

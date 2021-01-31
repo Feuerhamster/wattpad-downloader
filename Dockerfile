@@ -2,7 +2,7 @@
 FROM node:latest
 
 # Upgrade
-RUN apt update -y && apt upgrade -y && apt autoremove -y
+RUN apt update -y && apt upgrade -y && apt autoremove -y && rm -rf /var/lib/apt/lists/*
 
 # Create app directory, copy files and change workdir
 RUN mkdir -p /app

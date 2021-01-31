@@ -1,5 +1,5 @@
 # The Base Image used to create this Image
-FROM node:latest
+FROM node:lts
 
 # Upgrade
 RUN apt update -y && apt upgrade -y && apt autoremove -y && rm -rf /var/lib/apt/lists/*

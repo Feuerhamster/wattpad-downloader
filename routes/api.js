@@ -64,7 +64,7 @@ router.get("/:id/download/:format", async (req, res) => {
 
 	}
 
-	console.log(`[${new Date().toISOString()}] Converter: converted "${bookData.title}" (${req.params.id}) to "${req.params.format}"`);
+	console.log(`[${new Date().toISOString()}] Converted: "${bookData.title}" (${req.params.id}) to ${req.params.format} (${parts.length}/${bookData.parts.length} parts)`);
 
 });
 

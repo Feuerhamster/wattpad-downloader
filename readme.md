@@ -8,11 +8,22 @@ This software based on nodejs, express and ejs can fetch stories from Wattpad an
 ## Installation
 1. Clone / download the repository
 2. Go to the root directory of the project
-3. Run `npm install`
-4. Then run `npm start`
+3. Make sure to set up the environment variables properly if you want to use Ackee
+4. Run `npm install`
+5. Then run `npm start`
 
 The port can be changed with the environment variable `PORT`.
 Default port is `2200`.
+
+### Ackee
+For Ackee to work properly, an .env file with the following values must be created in the project root, or they must be included in the environment variables.
+
+```dotenv
+ACKEE_TRACKER = your_ackee_tracker_script_url
+ACKEE_SERVER = your_ackee_url
+ACKEE_DOMAIN_ID = your_ackee_domain_id
+ACKEE_DETAILED = true
+```
 
 ## Project structure
 - `lang` Contains JSON files with language translations. The file name corresponds to the 2-3 letters language tag from the *Accept-Language* http header.

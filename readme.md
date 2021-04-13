@@ -1,4 +1,6 @@
 # Wattpad Downloader
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d96cbab4794140b8af375d85fcf5d524)](https://www.codacy.com/gh/Feuerhamster/wattpad-downloader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Feuerhamster/wattpad-downloader&amp;utm_campaign=Badge_Grade)
+
 Download Wattpad stories for e-book readers, smartphones, desktop and more for free!
 
 This software based on nodejs, express and ejs can fetch stories from Wattpad and convert it into an EPUB file or a full functional HTML reader.

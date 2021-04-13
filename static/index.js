@@ -42,7 +42,7 @@ if(searchform) {
 /*
 * Download a book
 * */
-function download(id, type){
+function download(id, type) {
 
     document.querySelector("#loading-modal").classList.toggle("active");
 

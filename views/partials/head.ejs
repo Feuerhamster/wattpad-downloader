@@ -5,4 +5,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+            src="<%- ackee.tracker %>"
+            async
+            data-ackee-server="<%- ackee.server %>"
+            data-ackee-domain-id="<%- ackee.domain %>"
+            data-ackee-opts='{ "detailed": <%- ackee.detailed %> }'
+    ></script>
 </head>

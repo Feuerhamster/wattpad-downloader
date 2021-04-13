@@ -3,7 +3,7 @@
 * */
 function toggleMobileNav(event){
     event.preventDefault();
-    document.querySelector("#nav").classList.toggle("active")
+    document.querySelector("#nav").classList.toggle("active");
 }
 
 /*
@@ -23,7 +23,7 @@ if(searchform) {
         if(id && id[3]){
 
             if(id[2] === "story"){
-                window.location.href = window.location.href + 'b-' + id[3];
+                window.location.href = window.location.href + "b-" + id[3];
             }else{
                 window.location.href = window.location.href + id[3];
             }

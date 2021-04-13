@@ -5,9 +5,23 @@ const axios = require("axios");
 
 const Wattpad = require("./wattpad");
 
-class Generator{
+class Generator {
 
 	static availableFormats = ["epub", "html"];
+
+	static templates = {
+		mimetype: fs.readFileSync("./templates/epub/mimetype").toString(),
+		container: fs.readFileSync("./templates/epub/META-INF/container.xml").toString(),
+		metadata: fs.readFileSync("./templates/epub/META-INF/metadata.xml.ejs").toString(),
+		mainCSS: fs.readFileSync("./templates/epub/OPS/css/main.css").toString(),
+		titleCSS: fs.readFileSync("./templates/epub/OPS/css/title.css").toString(),
+		cover: fs.readFileSync("./templates/epub/OPS/cover.xhtml").toString(),
+		contentOPF: fs.readFileSync("./templates/epub/OPS/content.opf.ejs").toString(),
+		titleFile: fs.readFileSync("./templates/epub/OPS/title.xhtml.ejs").toString(),
+		toc: fs.readFileSync("./templates/epub/OPS/toc.ncx.ejs").toString(),
+		chapter: fs.readFileSync("./templates/epub/OPS/chapter.xhtml.ejs").toString(),
+		htmlv2: fs.readFileSync("./templates/htmlv2.ejs").toString()
+	}
 
 	/**
 	 * Generate an epub (zip) file
@@ -19,15 +33,15 @@ class Generator{
 		let zip = new JSZip();
 
 		// Mime type
-		zip.file("mimetype", fs.readFileSync("./templates/epub/mimetype").toString());
+		zip.file("mimetype", Generator.templates.mimetype);
 
 		// META-INF directory
 		let metaInf = zip.folder("META-INF");
 
 		// Container file
-		metaInf.file("container.xml", fs.readFileSync("./templates/epub/META-INF/container.xml").toString());
+		metaInf.file("container.xml", Generator.templates.container);
 		// Metadata
-		let metadata = ejs.render(fs.readFileSync("./templates/epub/META-INF/metadata.xml.ejs").toString(), book);
+		let metadata = ejs.render(Generator.templates.metadata, book);
 		metaInf.file("metadata.xml", metadata);
 
 		// OPS directory
@@ -35,8 +49,8 @@ class Generator{
 
 		// CSS
 		let css = ops.folder("css");
-		css.file("main.css", fs.readFileSync("./templates/epub/OPS/css/main.css").toString());
-		css.file("title.css", fs.readFileSync("./templates/epub/OPS/css/title.css").toString());
+		css.file("main.css", Generator.templates.mainCSS);
+		css.file("title.css", Generator.templates.titleCSS);
 
 		// Images
 		let images = ops.folder("images");
@@ -49,35 +63,32 @@ class Generator{
 		}
 
 		// Cover xhtml file
-		ops.file("cover.xhtml", fs.readFileSync("./templates/epub/OPS/cover.xhtml").toString());
+		ops.file("cover.xhtml", Generator.templates.cover);
 
 		// Content.opf
-		let contentOPF = ejs.render(fs.readFileSync("./templates/epub/OPS/content.opf.ejs").toString(), book);
+		let contentOPF = ejs.render(Generator.templates.contentOPF, book);
 		ops.file("content.opf", contentOPF);
 
 		// title.xhtml
-		let titleFile = ejs.render(fs.readFileSync("./templates/epub/OPS/title.xhtml.ejs").toString(), book);
+		let titleFile = ejs.render(Generator.templates.titleFile, book);
 		ops.file("title.xhtml", titleFile);
 
 		// table of contents
-		let toc = ejs.render(fs.readFileSync("./templates/epub/OPS/toc.ncx.ejs").toString(), book);
+		let toc = ejs.render(Generator.templates.toc, book);
 		ops.file("toc.ncx", toc);
 
 		// Chapters
 		for(let i = 0; i < parts.length; i++){
-			let chapter = ejs.render(fs.readFileSync("./templates/epub/OPS/chapter.xhtml.ejs").toString(), parts[i]);
+			let chapter = ejs.render(Generator.templates.chapter, parts[i]);
 			ops.file(`chapter${i}.xhtml`, chapter);
 		}
 
-		return new Promise((resolve, reject) => {
-
-			zip.generateAsync({ type: "arraybuffer" }).then((content) => {
-				//fs.writeFileSync(`./books_temp/${book.title}.zip`, content);
-				resolve(content);
-			});
-
-		});
-
+		try {
+			return await zip.generateAsync({ type: "arraybuffer" });
+		} catch (e) {
+			console.log("Generator error:", e);
+			return null;
+		}
 
 	}
 
@@ -94,7 +105,7 @@ class Generator{
 		let image = await Wattpad.getImage(book.cover);
 		let avatar = await Wattpad.getImage(book.user.avatar);
 
-		let template = fs.readFileSync("./templates/htmlv2.ejs").toString();
+		let template = Generator.templates.htmlv2;
 
 		return ejs.render(template, { book, parts, image, avatar, langName, lang });
 

@@ -143,6 +143,7 @@ button {
 button:hover {
     background-color: #ee7638;
 }
+
 /*
 * Book info
 */
@@ -248,6 +249,7 @@ button:hover {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -270,7 +272,6 @@ code {
     color: rgb(70, 70, 70);
     border-radius: 2px;
 }
-
 
 /*
 * Mobile optimization
@@ -310,5 +311,4 @@ code {
     .book-info {
         text-align: center;
     }
-
 }

@@ -13,7 +13,7 @@ app.locals.ackee = {
 	server: process.env["ACKEE_SERVER"],
 	domain: process.env["ACKEE_DOMAIN_ID"],
 	detailed: process.env["ACKEE_DETAILED"] === "true"
-}
+};
 
 // Static assets
 app.use(express.static("static"));

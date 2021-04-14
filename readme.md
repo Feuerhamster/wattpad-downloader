@@ -32,6 +32,12 @@ ACKEE_DETAILED = true
 CACHE_TTL = 86400
 ```
 
+## Docker
+You can deploy the Wattpad Downloader with docker:
+```bash
+docker run -d --name wattpad-dl -p 2200:2200 repo.bluemedia.dev/bluemedia/wattpad-downloader
+```
+
 ## Project structure
 - `/lang` Contains JSON files with language translations. The file name corresponds to the 2-3 letters language tag from the *Accept-Language* http header.
 - `/routes` Contains js files with express routers.

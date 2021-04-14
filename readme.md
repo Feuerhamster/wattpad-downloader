@@ -10,30 +10,35 @@ This software based on nodejs, express and ejs can fetch stories from Wattpad an
 ## Installation
 1. Clone / download the repository
 2. Go to the root directory of the project
-3. Make sure to set up the environment variables properly if you want to use Ackee
+3. Make sure to set up the environment variables properly
 4. Run `npm install`
 5. Then run `npm start`
 
 The port can be changed with the environment variable `PORT`.
 Default port is `2200`.
 
-### Ackee
-For Ackee to work properly, an .env file with the following values must be created in the project root, or they must be included in the environment variables.
+### Environment variables
+For the node app, to work properly, an .env file with the following values must be created in the project root, or they must be included in the environment variables.
+The app will start and work without, but it's recommended to set those variables.
 
 ```dotenv
+# Ackee configuration
 ACKEE_TRACKER = your_ackee_tracker_script_url
 ACKEE_SERVER = your_ackee_url
 ACKEE_DOMAIN_ID = your_ackee_domain_id
 ACKEE_DETAILED = true
+
+# Caching ttl in seconds for the wattpad api
+CACHE_TTL = 86400
 ```
 
 ## Project structure
-- `lang` Contains JSON files with language translations. The file name corresponds to the 2-3 letters language tag from the *Accept-Language* http header.
-- `routes` Contains js files with express routers.
-- `services` Contains js files with static classes that provides some functionalities.
-- `static` Contains multiple files that will be hostet as static assets by express.
-- `templates` Contains the templates to convert the wattpad stories to the specific formats.
-- `views` Contains EJS views that will be rendered by express
+- `/lang` Contains JSON files with language translations. The file name corresponds to the 2-3 letters language tag from the *Accept-Language* http header.
+- `/routes` Contains js files with express routers.
+- `/services` Contains js files with static classes that provides some functionalities.
+- `/static` Contains multiple files that will be hostet as static assets by express.
+- `/templates` Contains the templates to convert the wattpad stories to the specific formats.
+- `/views` Contains EJS views that will be rendered by express
 
 ## API Endpoints
 **Important:** Do not use this automated! The endpoint have a high response time because the backend have to fetch all data and texts from the wattpad books.

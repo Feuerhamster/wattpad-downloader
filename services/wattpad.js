@@ -1,8 +1,16 @@
 // Import modules and services
 const axios = require("axios");
 const jsdom = require("jsdom");
+const NodeCache = require("node-cache");
+
+// Cache time to live
+let ttl = process.env["CACHE_TTL"];
+ttl = ttl && ttl.match(/\d+/) ? parseInt(ttl) : 86400;
+
 
 class Wattpad {
+
+	static cache = new NodeCache({ stdTTL: ttl });
 
 	/**
 	 * Get a base64 image fron an url
@@ -28,10 +36,18 @@ class Wattpad {
 	 */
 	static async getBookByPartId(id) {
 
+		let key = "bookbypart." + id;
+
+		if(Wattpad.cache.has(key)) {
+			return Wattpad.cache.get(key);
+		}
+
 		try {
 
 			let res = await axios.get(`https://www.wattpad.com/v4/parts/${id}?fields=text_url,group(id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags)`,
 				{ headers: { accept: "application/json" }});
+
+			Wattpad.cache.set(key, res.data);
 
 			return res.data;
 
@@ -48,10 +64,18 @@ class Wattpad {
 	 */
 	static async getBookById(id) {
 
+		let key = "book." + id;
+
+		if(Wattpad.cache.has(key)) {
+			return Wattpad.cache.get(key);
+		}
+
 		try {
 
 			let res = await axios.get(`https://www.wattpad.com/api/v3/stories/${id}?fields=id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags`,
 				{ headers: { accept: "application/json" }});
+
+			Wattpad.cache.set(key, res.data);
 
 			return res.data;
 
@@ -114,24 +138,31 @@ class Wattpad {
 	 * @param parts
 	 * @returns {Promise<[]>}
 	 */
-	static async getParts(parts){
+	static async getParts(parts) {
 
 		let texts = [];
 
-		for(let part of parts){
+		for(let part of parts) {
 
-			try{
+			try {
 
-				let text = await axios.get(part.text_url.text);
+				let key = "part." + part.id;
+				let text = null;
 
-				text = Wattpad.formatText(text.data);
+				if(Wattpad.cache.has(key)) {
+					text = Wattpad.cache.get(key);
+				} else {
+					text = await axios.get(part.text_url.text);
+					text = Wattpad.formatText(text.data);
+					Wattpad.cache.set(key, text);
+				}
 
 				texts.push({
 					title: part.title,
 					data: text
 				});
 
-			}catch (e) {
+			} catch (e) {
 				continue;
 			}
 

@@ -10,9 +10,9 @@
     "express": "^4.17.1",
     "jsdom": "^16.2.2",
     "jszip": "^3.5.0",
-    "node-cache": "^5.1.2"
+    "node-cache": "^5.1.2",
+    "pug": "^3.0.2"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node main.js"
   },

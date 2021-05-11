@@ -1,0 +1,15 @@
+doctype html
+html(lang=langName)
+    include partials/head
+    body
+        include partials/titlebar
+        block page
+
+script(src="index.js")
+script(
+    src=ackee.tracker
+    async
+    data-ackee-server=ackee.server
+    data-ackee-domain-id=ackee.domain
+    data-ackee-opts={ignoreLocalhost: true, detailed: ackee.detailed}
+)

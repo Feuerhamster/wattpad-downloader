@@ -1,7 +1,7 @@
 /*
 * Navbar
 * */
-function toggleMobileNav(event){
+function toggleMobileNav(event) {
     event.preventDefault();
     document.querySelector("#nav").classList.toggle("active");
 }

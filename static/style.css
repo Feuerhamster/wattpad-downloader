@@ -5,6 +5,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-orange: #FF6B30;
+    --color-orange-accent: #e86a33;
+    --color-grey: #e1e1e1;
+    --color-red: #c80046;
+    --color-text: #414b55;
+    --color-background: #FAFAFAFF;
+    --color-background-accent: #FFF;
+}
+
 html {
     min-height: 100vh;
     display: flex;
@@ -12,7 +22,7 @@ html {
 
 body {
     display: flex;
-    background-color: rgb(250, 250, 250);
+    background-color: var(--color-background);
     flex-direction: column;
     align-items: center;
     font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -21,7 +31,7 @@ body {
     margin: 0;
     min-height: 100vh;
     width: 100vw;
-    color: #414b55;
+    color: var(--color-text);
 }
 
 .page {
@@ -96,19 +106,20 @@ form {
 }
 
 input {
-    border: 3px solid #DCDCDC;
+    border: 3px solid var(--color-grey);
+    color: var(--color-text);
     border-radius: 32px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 18px;
     outline: 0;
     margin-bottom: 20px;
     min-width: 350px;
-    background: white;
+    background: var(--color-background-accent);
     transition: border .2s ease;
 }
 
 input:focus {
-    border: 3px solid #FF6B30;
+    border: 3px solid var(--color-orange);
 }
 
 input::placeholder {
@@ -118,10 +129,9 @@ input::placeholder {
 /*
 * Buttons
 */
-
 button {
     border: 0;
-    background-color: #FF6B30;
+    background-color: var(--color-orange);
     color: white;
     font-size: 21px;
     padding: 10px 25px;
@@ -134,10 +144,11 @@ button {
     outline: 0;
     margin-bottom: 20px;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+    transition:background-color .1s ease;
 }
 
 button:hover {
-    background-color: #f56b30;
+    background-color: #ed6d35;
 }
 
 /*
@@ -151,6 +162,9 @@ button:hover {
 }
 
 .book-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     text-align: left;
     padding: 20px;
     margin-left: 30px;
@@ -171,6 +185,10 @@ button:hover {
     align-items: center;
     font-weight: 500;
     margin: 0 0 5px 0;
+}
+
+.book-info p {
+    word-break: break-word;
 }
 
 .book-info button {
@@ -198,7 +216,7 @@ button:hover {
     margin: 10px;
     border-radius: 3px;
     box-shadow: 1px 1px 5px 1px rgba(50, 50, 50, 0.2);
-    background-color: white;
+    background-color: var(--color-background);
     flex-direction: column;
     align-items: center;
 }
@@ -229,10 +247,10 @@ button:hover {
     position: absolute;
     width: 48px;
     height: 48px;
-    border: 4px solid #ff500a;
+    border: 4px solid var(--color-orange);
     border-radius: 50%;
     animation: lds-ring 0.6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #ff500a transparent transparent transparent;
+    border-color: var(--color-orange) transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {
@@ -261,7 +279,7 @@ button:hover {
 * Error color
 */
 .error {
-    color: #c80046;
+    color: var(--color-red);
     text-align: center;
 }
 
@@ -270,8 +288,8 @@ button:hover {
 */
 code {
     padding: 5px 10px;
-    background-color: rgba(230, 230, 230, 0.5);
-    color: rgb(70, 70, 70);
+    background-color: var(--color-grey);
+    color: var(--color-text);
     border-radius: 8px;
     word-break: break-word;
 }
@@ -280,7 +298,7 @@ code {
 * Links
 */
 a {
-    color: #e1411e;
+    color: var(--color-orange-accent);
 }
 
 /*
@@ -299,8 +317,7 @@ a {
         display: none;
         flex-direction: column;
         align-items: center;
-        background-color: #ff6b30;
-        border-bottom: 1px solid #eee;
+        background-color: var(--color-orange);
         padding: 10px;
         left: 0;
     }
@@ -327,7 +344,29 @@ a {
         align-items: center;
     }
 
+    .book-cover {
+        margin-bottom: 20px;
+    }
+
     .book-info {
         text-align: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
     }
+}
+
+/*
+* DarkMode
+*/
+@media (prefers-color-scheme: dark) {
+
+    :root {
+        --color-background: #1e1e1e;
+        --color-background-accent: #191919;
+        --color-text: #e1e3e6;
+        --color-grey: #505050;
+        --color-red: #c80046;
+    }
+
 }

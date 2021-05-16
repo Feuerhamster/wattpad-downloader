@@ -40,6 +40,7 @@ body {
     padding: 15px;
     flex-grow: 1;
     max-width: 960px;
+    word-break: break-word;
 }
 
 .center {
@@ -93,7 +94,7 @@ body {
 }
 
 #titlebar a:hover {
-    border-bottom: 3px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 3px rgba(255, 255, 255, 0.6);
 }
 
 /*
@@ -129,8 +130,10 @@ input::placeholder {
 /*
 * Buttons
 */
-button {
+button,
+.button {
     border: 0;
+    text-decoration: none;
     background-color: var(--color-orange);
     color: white;
     font-size: 21px;
@@ -147,7 +150,8 @@ button {
     transition:background-color .1s ease;
 }
 
-button:hover {
+button:hover,
+.button:hover {
     background-color: #ed6d35;
 }
 
@@ -342,6 +346,10 @@ a {
     .row {
         flex-direction: column;
         align-items: center;
+    }
+
+    input {
+        min-width: 300px;
     }
 
     .book-cover {

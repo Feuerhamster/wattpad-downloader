@@ -1,6 +1,7 @@
 {
   "name": "wattpad-downloader",
-  "version": "1.1.0",
+  "version": "1.2.0",
+  "private": true,
   "description": "A website to download wattpad stories",
   "main": "main.js",
   "dependencies": {
@@ -10,12 +11,14 @@
     "express": "^4.17.1",
     "jsdom": "^16.2.2",
     "jszip": "^3.5.0",
-    "node-cache": "^5.1.2"
+    "node-cache": "^5.1.2",
+    "pug": "^3.0.2"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node main.js"
   },
   "author": "",
-  "license": "ISC"
+  "homepage": "https://wattpad.ml",
+  "repository": "github:Feuerhamster/wattpad-downloader",
+  "license": "AGPL-3.0-only"
 }

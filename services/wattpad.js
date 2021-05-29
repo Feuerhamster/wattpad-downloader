@@ -5,7 +5,7 @@ const NodeCache = require("node-cache");
 
 // Cache time to live
 let ttl = process.env["CACHE_TTL"];
-ttl = ttl && ttl.match(/\d+/) ? parseInt(ttl) : 86400;
+ttl = ttl && ttl.match(/\d+/) ? parseInt(ttl, 10) : 86400;
 
 
 class Wattpad {

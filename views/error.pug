@@ -1,0 +1,11 @@
+extends _layout
+
+block page
+    div.page.center
+        if error === "book_not_found"
+            h1.errror= lang.errors.bookNotFound
+        else
+            h1.error Unknown Error
+
+        a.button(href="/")= lang.titlebar.home
+

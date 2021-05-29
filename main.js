@@ -19,7 +19,7 @@ app.locals.ackee = {
 app.use(express.static("static"));
 
 // Views
-app.set("view engine", "ejs");
+app.set("view engine", "pug");
 app.set("views", "views");
 
 // Routes

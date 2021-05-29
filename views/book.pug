@@ -1,0 +1,38 @@
+extends _layout
+
+block page
+    div.page.center.row
+        img.book-cover(src=book.cover alt="cover")
+
+        div.book-info
+            h1= book.title
+            h3
+                b= lang.book.author
+                span :&nbsp;
+                spa= book.user.name
+                img.avatar(src=book.user.avatar alt="avatar")
+
+            h3
+                b= lang.book.pubDate
+                span :&nbsp;
+                span= new Date(book.lastPublishedPart.createDate).getFullYear()
+
+            h3
+                b= lang.parts
+                span :&nbsp;
+                span= book.parts.length
+
+            p= book.description && book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description
+
+            button(onclick="download('" + book.id + "', 'epub')")= lang.book.download.epub
+            button(onclick="download('" + book.id + "', 'html')")= lang.book.download.html
+
+    di#loading-modal.modal
+        div
+            h1!= lang.book.loading.text
+            div.lds-ring
+                div
+                div
+                div
+                div
+                div

@@ -1,0 +1,11 @@
+div#titlebar
+    img(src="/icons/base-icon.svg" onclick="window.location.href = '/'" alt="logo")
+    h1 Wattpad Downloader
+    nav#nav
+        a(href="/")= lang.titlebar.home
+        a(href="/help")= lang.titlebar.help
+        a(href="/privacy")= lang.titlebar.privacy
+        a(href="https://wattpad.com" target="_blank" rel="noreferrer") Wattpad
+        a(href="https://github.com/Feuerhamster/wattpad-downloader/" target="_blank" rel="noopener") GitHub
+
+    a#toggle-mobile-nav(href="#" onclick="toggleMobileNav(event)") Menu

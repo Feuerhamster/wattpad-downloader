@@ -116,7 +116,7 @@ input {
     margin-bottom: 20px;
     min-width: 350px;
     background: var(--color-background-accent);
-    transition: border .2s ease;
+    transition: border 0.2s ease;
 }
 
 input:focus {
@@ -147,7 +147,7 @@ button,
     outline: 0;
     margin-bottom: 20px;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
-    transition:background-color .1s ease;
+    transition: background-color 0.1s ease;
 }
 
 button:hover,
@@ -309,7 +309,6 @@ a {
 * Mobile optimization
 */
 @media only screen and (max-width: 920px) {
-
     h1 {
         font-size: 30px;
     }
@@ -368,7 +367,6 @@ a {
 * DarkMode
 */
 @media (prefers-color-scheme: dark) {
-
     :root {
         --color-background: #1e1e1e;
         --color-background-accent: #191919;
@@ -376,5 +374,4 @@ a {
         --color-grey: #505050;
         --color-red: #c80046;
     }
-
 }

@@ -1,0 +1,12 @@
+extends _layout
+
+block page
+    div.page.center
+        h1!= lang.home.text
+        p!= lang.home.urlDescription
+        code https://www.wattpad.#[b(style={color: "#ee4a4a"}) ml]/story/12345-a-story
+
+        form#searchform
+            p#error-result.error
+            input(type="text"  placeholder=lang.home.placeholder)
+            button= lang.home.submit

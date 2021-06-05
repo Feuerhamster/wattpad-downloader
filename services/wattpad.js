@@ -105,7 +105,7 @@ class Wattpad {
 	}
 
 	/**
-	 * Remove watpad attributes from html elements
+	 * Remove wattpad attributes from html elements
 	 * @param text
 	 * @returns {string}
 	 */
@@ -116,7 +116,7 @@ class Wattpad {
 		let pElements = document.querySelectorAll("p");
 
 		text = Array.from(pElements).map((el) => `<p>${el.innerHTML}</p>`).join("");
-		text = text.replace(/<br ?\/?>/g, "");
+		text = text.replace(/<br ?\/?>/g, "<br />");
 		text = text.replace(/&nbsp;/g, " ");
 
 		return text;

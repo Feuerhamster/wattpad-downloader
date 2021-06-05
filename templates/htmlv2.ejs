@@ -40,6 +40,11 @@
 		flex-direction: column;
 		line-height: 1.5;
 	}
+
+	.part img {
+		max-width: 100%;
+	}
+
 	.avatar {
 		border-radius: 50%;
 		max-height: 45px;
@@ -248,6 +253,8 @@
 
 	});
 
+	let isScrolling;
+
 	window.addEventListener("scroll", (event) => {
 
 		let currentScroll = Math.round(window.scrollY);
@@ -256,11 +263,13 @@
 		let percentScrolled = Math.round((currentScroll / maxScroll) * 100);
 		document.querySelector("#indicator-bar").style.width = percentScrolled + "%";
 
-	});
+		window.clearTimeout(isScrolling);
 
-	setInterval(() => {
-		localStorage.setItem("scrollsave", Math.round(window.scrollY).toString());
-	}, 8000);
+		isScrolling = setTimeout(() => {
+			localStorage.setItem("scrollsave", currentScroll.toString());
+		}, 80);
+
+	});
 
 	function changeFontSize(increase){
 

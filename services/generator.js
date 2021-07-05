@@ -1,4 +1,5 @@
 const ejs = require("ejs");
+const pug = require("pug");
 const fs = require("fs");
 const JSZip = require("jszip");
 const axios = require("axios");
@@ -20,7 +21,7 @@ class Generator {
 		titleFile: fs.readFileSync("./templates/epub/OPS/title.xhtml.ejs").toString(),
 		toc: fs.readFileSync("./templates/epub/OPS/toc.ncx.ejs").toString(),
 		chapter: fs.readFileSync("./templates/epub/OPS/chapter.xhtml.ejs").toString(),
-		htmlv2: fs.readFileSync("./templates/htmlv2.ejs").toString()
+		htmlv2: fs.readFileSync("./templates/htmlv2.pug").toString()
 	}
 
 	/**
@@ -107,7 +108,7 @@ class Generator {
 
 		let template = Generator.templates.htmlv2;
 
-		return ejs.render(template, { book, parts, image, avatar, langName, lang });
+		return pug.render(template, { book, parts, image, avatar, langName, lang });
 
 	}
 

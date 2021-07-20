@@ -1,0 +1,19 @@
+doctype xml
+entry(xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns="http://www.w3.org/2005/Atom" xmlns:schema="http://schema.org/")
+    title= title
+    id
+    author
+        name= user.name
+        uri https://www.wattpad.com/user/#{user.username}
+
+    published= lastPublishedPart.createDate
+    dcterms:language de
+
+    each tag in tags
+        category(label=tag)
+
+    summary= description
+    dcterms:source https://www.wattpad.com
+    link(type="image/jpeg" rel="http://opds-spec.org/image" href=cover)
+    link(type="image/jpeg" rel="http://opds-spec.org/image/thumbnail" href=cover)
+    content(type="html")= description

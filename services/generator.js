@@ -1,4 +1,3 @@
-const ejs = require("ejs");
 const pug = require("pug");
 const fs = require("fs");
 const JSZip = require("jszip");
@@ -13,14 +12,14 @@ class Generator {
 	static templates = {
 		mimetype: fs.readFileSync("./templates/epub/mimetype").toString(),
 		container: fs.readFileSync("./templates/epub/META-INF/container.xml").toString(),
-		metadata: fs.readFileSync("./templates/epub/META-INF/metadata.xml.ejs").toString(),
+		metadata: fs.readFileSync("./templates/epub/META-INF/metadata.xml.pug").toString(),
 		mainCSS: fs.readFileSync("./templates/epub/OPS/css/main.css").toString(),
 		titleCSS: fs.readFileSync("./templates/epub/OPS/css/title.css").toString(),
 		cover: fs.readFileSync("./templates/epub/OPS/cover.xhtml").toString(),
-		contentOPF: fs.readFileSync("./templates/epub/OPS/content.opf.ejs").toString(),
-		titleFile: fs.readFileSync("./templates/epub/OPS/title.xhtml.ejs").toString(),
-		toc: fs.readFileSync("./templates/epub/OPS/toc.ncx.ejs").toString(),
-		chapter: fs.readFileSync("./templates/epub/OPS/chapter.xhtml.ejs").toString(),
+		contentOPF: fs.readFileSync("./templates/epub/OPS/content.opf.pug").toString(),
+		titleFile: fs.readFileSync("./templates/epub/OPS/title.xhtml.pug").toString(),
+		toc: fs.readFileSync("./templates/epub/OPS/toc.ncx.pug").toString(),
+		chapter: fs.readFileSync("./templates/epub/OPS/chapter.xhtml.pug").toString(),
 		htmlv2: fs.readFileSync("./templates/htmlv2.pug").toString()
 	}
 
@@ -29,7 +28,7 @@ class Generator {
 	 * @param book
 	 * @param parts
 	 */
-	static async epub(book, parts){
+	static async epub(book, parts) {
 
 		let zip = new JSZip();
 
@@ -42,7 +41,7 @@ class Generator {
 		// Container file
 		metaInf.file("container.xml", Generator.templates.container);
 		// Metadata
-		let metadata = ejs.render(Generator.templates.metadata, book);
+		let metadata = pug.render(Generator.templates.metadata, book);
 		metaInf.file("metadata.xml", metadata);
 
 		// OPS directory
@@ -67,20 +66,20 @@ class Generator {
 		ops.file("cover.xhtml", Generator.templates.cover);
 
 		// Content.opf
-		let contentOPF = ejs.render(Generator.templates.contentOPF, book);
+		let contentOPF = pug.render(Generator.templates.contentOPF, book);
 		ops.file("content.opf", contentOPF);
 
 		// title.xhtml
-		let titleFile = ejs.render(Generator.templates.titleFile, book);
+		let titleFile = pug.render(Generator.templates.titleFile, book);
 		ops.file("title.xhtml", titleFile);
 
 		// table of contents
-		let toc = ejs.render(Generator.templates.toc, book);
+		let toc = pug.render(Generator.templates.toc, book);
 		ops.file("toc.ncx", toc);
 
 		// Chapters
 		for(let i = 0; i < parts.length; i++){
-			let chapter = ejs.render(Generator.templates.chapter, parts[i]);
+			let chapter = pug.render(Generator.templates.chapter, parts[i]);
 			ops.file(`chapter${i}.xhtml`, chapter);
 		}
 
@@ -101,7 +100,7 @@ class Generator {
 	 * @param lang
 	 * @returns {Promise<*>}
 	 */
-	static async html(book, parts, langName, lang){
+	static async html(book, parts, langName, lang) {
 
 		let image = await Wattpad.getImage(book.cover);
 		let avatar = await Wattpad.getImage(book.user.avatar);
@@ -111,30 +110,6 @@ class Generator {
 		return pug.render(template, { book, parts, image, avatar, langName, lang });
 
 	}
-
-	/*static async pdf(book, parts){
-
-		let image = Wattpad.getImage(book.cover);
-
-		let template = fs.readFileSync("./templates/pdf.ejs").toString();
-
-		let html = ejs.render(template, { book, parts, image });
-
-		return new Promise((resolve, reject) => {
-
-			htmlpdf.create(html, { timeout: 10000 }).toBuffer(function(err, buffer){
-
-				if(!err){
-					resolve(buffer);
-				}else{
-					reject(err);
-				}
-
-			});
-
-		});
-
-	}*/
 
 }
 

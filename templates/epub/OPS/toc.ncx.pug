@@ -1,0 +1,28 @@
+doctype xml
+doctype ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd"
+
+ncx(version="2005-1" xml:lang="de" xmlns="http://www.daisy.org/z3986/2005/ncx/")
+    head
+        meta(name="dtb:uid" content="urn:uri:" + url)
+        meta(name="dtb:depth" content="1")
+        meta(name="dtb:totalPageCount" content="0")
+        meta(name="dtb:maxPageNumber" content="0")
+
+    docTitle
+        text= title
+
+    docAuthor
+        text= user.name
+
+    navMap
+        navPoint.titlepage(playOrder="1" id="navpoint-titlepage")
+            navLabel
+                text Titel
+            content(src="title.xhtml")
+
+
+        each part, i in parts
+            navPoint.chapter(playOrder=i+2 id="navpoint-" + i)
+                navLabel
+                    text= part.title
+                content(src="chapter" + i + ".xhtml")

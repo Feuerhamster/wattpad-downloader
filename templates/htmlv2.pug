@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+doctype html
 
-<style>
+style.
 	* {
 		box-sizing: border-box;
 	}
@@ -152,73 +152,60 @@
 	.dark #indicator {
 		background-color: rgb(70, 70, 70);
 	}
-</style>
-
-<html lang="<%= langName %>">
-
-	<head>
-		<meta charset="UTF-8">
-		<title><%= book.title %></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-
-	<body>
-
-		<div class="part" id="book-meta">
-
-			<img class="book-cover" src="data:image/jpg;base64,<%- image %>"  alt="Cover"/>
-
-			<h1><%= book.title %></h1>
-
-			<h3><b><%= lang.book.author %>:</b>&nbsp;<%= book.user.name %> <img class="avatar" src="data:image/jpg;base64,<%- avatar %>" /> </h3>
-
-			<h3><b><%= lang.book.pubDate %>:</b>&nbsp;<%= new Date(book.lastPublishedPart.createDate).getFullYear() %></h3>
-
-			<p><%= book.description %></p>
 
 
-		</div>
+html(lang=langName)
 
-		<% for(let i = 0; i < parts.length; i++){ %>
+	head
+		meta(charset="UTF-8")
+		title= book.title
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
-			<div class="part">
+	body
 
-				<h1><%= parts[i].title %></h1>
-				<div><%- parts[i].data %></div>
+		div.part#book-meta
 
-			</div>
+			img.book-cover(src="data:image/jpg;base64," + image  alt="Cover")
 
-		<% } %>
+			h1= book.title
 
-		<div id="top-control">
+			h3
+				b= lang.book.author +": " + book.user.name
+				img.avatar(src="data:image/jpg;base64," + avatar)
 
-			<button title="Change font" onclick="changeFont()">🅰️</button>
-			<button title="Decrease font size" onclick="changeFontSize(false)">➖</button>
-			<button title="Increase font size" onclick="changeFontSize(true)">➕</button>
-			<button title="Change color mode" onclick="changeColorMode()" id="colormode-button">🌖</button>
+			h3
+				b= lang.book.pubDate + ": " + new Date(book.lastPublishedPart.createDate).getFullYear()
 
-		</div>
+			p= book.description
 
-		<div id="bottom-control">
-			<div id="indicator">
-				<span id="indicator-bar"></span>
-			</div>
-			<div style="display: flex; justify-content: space-around; width: 100%; padding: 5px;">
-				<span><b><%= lang.parts %>:</b> <%= parts.length %></span>
-				<span><b>Font size:</b> <span id="font-size">18</span></span>
-			</div>
-		</div>
+		each part in parts
+			div.part
+				h1= part.title
+				div!= part.data
 
-		<footer>
-			<a href="https://wattpad.com" target="_blank">Wattpad.com</a>
-			<a href="https://wattpad.ml" target="_blank">Wattpad Downloader</a>
-		</footer>
+		div#top-control
 
-	</body>
+			button(title="Change font" onclick="changeFont()") 🅰️
+			button(title="Decrease font size" onclick="changeFontSize(false)") ➖
+			button(title="Increase font size" onclick="changeFontSize(true)") ➕
+			button#colormode-button(title="Change color mode" onclick="changeColorMode()") 🌖
 
-</html>
+		div#bottom-control
+			div#indicator
+				span#indicator-bar
+			div(style="display: flex; justify-content: space-around; width: 100%; padding: 5px;")
+				span
+					b= lang.parts + ": "
+					span= parts.length
+				span
+					b Font size:&nbsp;
+					span#font-size 18
 
-<script>
+		footer
+			a(href="https://wattpad.com" target="_blank") Wattpad.com
+			a(href="https://wattpad.ml" target="_blank") Wattpad Downloader
+
+script.
 	const fontList = ["Arial, sans-serif", "Verdana, sans-serif", "Cambria, serif", "cursive", "monospace"];
 	let scrollsave = localStorage.getItem("scrollsave");
 	let fontsize = localStorage.getItem("fontsize");
@@ -278,7 +265,7 @@
 		let newFontSize;
 
 		if(increase && fontSize < 28){
-			 newFontSize = fontSize + 2;
+			newFontSize = fontSize + 2;
 
 		}else if(increase === false && fontSize > 14){
 			newFontSize = fontSize - 2;
@@ -336,5 +323,3 @@
 		}
 
 	}
-
-</script>

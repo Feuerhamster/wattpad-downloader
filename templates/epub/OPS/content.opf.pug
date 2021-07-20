@@ -1,0 +1,54 @@
+doctype xml
+package(version="2.0" unique-identifier="PrimaryID" xmlns="http://www.idpf.org/2007/opf")
+    metadata(xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/")
+        dc:title= title
+        dc:identifier(id="PrimaryID" opf:scheme="URI")= "urn:uri:" + url
+        dc:identifier(opf:scheme="URI")= url
+
+        dc:language(xsi:type="dcterms:RFC4646") en
+
+        dc:creator(opf:role="aut")= user.name
+
+        dc:publisher Wattpad
+        dc:description= description
+        dc:coverage
+        dc:source https://www.wattpad.com
+        dc:date(opf:event="ops-publication")= lastPublishedPart.createDate
+        dc:rights
+        each tag in tags
+            dc:subject= tag
+
+        meta(name="cover" content="book-cover")
+
+    manifest
+        // Content Documents
+        item#cover(href="cover.xhtml" media-type="application/xhtml+xml")
+        item#titlepage(href="title.xhtml" media-type="application/xhtml+xml")
+
+        each part, i in parts
+            item(id="chapter" + i href="chapter" + i + ".xhtml" media-type="application/xhtml+xml")
+
+
+        // CSS Style Sheets
+        item#titlepage-css(href="css/title.css" media-type="text/css")
+        item#main-css(href="css/main.css" media-type="text/css")
+
+        // Images
+        item#book-cover(href="images/cover.jpg" media-type="image/jpeg")
+
+        // NCX
+        item#ncx(href="toc.ncx" media-type="application/x-dtbncx+xml")
+
+    spine(toc="ncx")
+        itemref(idref="cover" linear="yes")
+        itemref(idref="titlepage" linear="yes")
+
+        each part, i in parts
+            itemref(idref="chapter" + i linear="yes")
+
+    guide
+        reference(type="cover" title="Cover" href="cover.xhtml")
+        reference(type="title-page" title="Title Page" href="title.xhtml")
+
+        each part, i in parts
+            reference(type="text" title="Chapter" + i href="chapter" + i + ".xhtml")

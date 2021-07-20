@@ -1,12 +1,13 @@
 // Import modules and services
 const axios = require("axios");
-const jsdom = require("jsdom");
 const NodeCache = require("node-cache");
+const sanitizeHtml = require("sanitize-html");
 
 // Cache time to live
 let ttl = process.env["CACHE_TTL"];
 ttl = ttl && ttl.match(/\d+/) ? parseInt(ttl, 10) : 86400;
 
+let allowedTags = sanitizeHtml.defaults.allowedTags.filter((e) => e !== "u");
 
 class Wattpad {
 
@@ -105,24 +106,6 @@ class Wattpad {
 	}
 
 	/**
-	 * Remove wattpad attributes from html elements
-	 * @param text
-	 * @returns {string}
-	 */
-	static formatText(text){
-
-		const document = new jsdom.JSDOM(text).window.document;
-
-		let pElements = document.querySelectorAll("p");
-
-		text = Array.from(pElements).map((el) => `<p>${el.innerHTML}</p>`).join("");
-		text = text.replace(/<br ?\/?>/g, "<br />");
-		text = text.replace(/&nbsp;/g, " ");
-
-		return text;
-	}
-
-	/**
 	 * Convert the book title to a file name friendly slug
 	 * @param title
 	 * @returns {string}
@@ -153,7 +136,11 @@ class Wattpad {
 					text = Wattpad.cache.get(key);
 				} else {
 					text = await axios.get(part.text_url.text);
-					text = Wattpad.formatText(text.data);
+
+					text = sanitizeHtml(text.data, {
+						allowedTags
+					});
+
 					Wattpad.cache.set(key, text);
 				}
 

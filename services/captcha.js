@@ -35,7 +35,7 @@ class CaptchaService {
     static async middleware(req, res, next) {
         if (!process.env["RECAPTCHA_SECRET"]) return next();
 
-        if(!req.query.token) res.status(403).send({ error: "invalid_token" });
+        if(!req.query.token) return res.status(403).send({ error: "invalid_token" });
 
         let captchaResult = await CaptchaService.validateCaptcha(req.query.token);
 

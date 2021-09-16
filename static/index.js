@@ -64,6 +64,8 @@ function download(id, type, captchaToken) {
 
         document.querySelector("#loading-modal").classList.toggle("active");
 
+        grecaptcha.reset();
+
     }).catch((e) => {
         document.querySelector("#loading-modal").classList.toggle("active");
         window.location.href = window.location.origin + "/error/" + e.response.status;

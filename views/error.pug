@@ -3,7 +3,11 @@ extends _layout
 block page
     div.page.center
         if error === "book_not_found"
-            h1.errror= lang.errors.bookNotFound
+            h1.error= lang.errors.bookNotFound
+        else if error === "403"
+            h1.error= lang.errors.tokenError
+        else if error === "500"
+            h1.error= lang.errors.serverError
         else
             h1.error Unknown Error
 

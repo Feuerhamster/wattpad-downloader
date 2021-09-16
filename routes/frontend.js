@@ -45,6 +45,13 @@ router.get("/privacy", (req, res) => {
 });
 
 /*
+ * Error view
+ */
+router.get("/error/:err", (req, res) => {
+	res.render("error", { error: req.params.err, lang: req.trans.lang, langName: req.trans.langName });
+});
+
+/*
 * Book view
 * */
 router.get(/^\/((b)-)?(\d+)$/, async (req, res) => {

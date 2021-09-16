@@ -29,6 +29,10 @@ ACKEE_DETAILED = true
 
 # Caching ttl in seconds for the wattpad api
 CACHE_TTL = 86400
+
+# Google ReCaptcha configuration
+RECAPTCHA_SITEKEY = your_site_key
+RECAPTCHA_SECRET = your_captcha_secret
 ```
 
 ## Docker
@@ -52,6 +56,9 @@ docker run -d --name wattpad-dl -p 2200:2200 repo.bluemedia.dev/bluemedia/wattpa
 **Params:**
 - `id` The id of a wattpad story
 - `format` The format for a download *epub|html*
+
+**Querystring:**
+- `token` A user response from ReCaptcha
 
 **Returns:**
 - `.epub` file download (Content-disposition: attachment)

@@ -37,6 +37,10 @@
 		"lang": "Language",
 		"loading": {
 			"text": "Plese wait a few seconds while we prepare your download..."
+		},
+		"captcha": {
+			"title": "Security check",
+			"description": "Since we currently have a lot of traffic, we need to verify that you are a real person."
 		}
 	},
 	"parts": "Parts",
@@ -45,6 +49,8 @@
 	"startReading": "Start reading",
 	"errors": {
 		"bookNotFound": "Sorry but we can't find the book!",
-		"invalidSearch": "We can not parse your entered value.<br/> Please provide a wattpad link to a story or an ID."
+		"invalidSearch": "We can not parse your entered value.<br/> Please provide a wattpad link to a story or an ID.",
+		"tokenError": "Your Captcha-Token is invalid.",
+		"serverError": "The book could not be retrieved/converted due to an internal error."
 	}
 }

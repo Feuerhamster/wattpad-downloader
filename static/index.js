@@ -42,12 +42,10 @@ if(searchform) {
 /*
 * Download a book
 * */
-function download(id, type) {
-
-    document.querySelector("#loading-modal").classList.toggle("active");
+function download(id, type, captchaToken) {
 
     axios({
-        url: `${window.location.origin}/api/${id}/download/${type}`,
+        url: `${window.location.origin}/api/${id}/download/${type}?token=${captchaToken}`,
         method: "GET",
         responseType: "blob", // important
     }).then((response) => {
@@ -66,6 +64,24 @@ function download(id, type) {
 
         document.querySelector("#loading-modal").classList.toggle("active");
 
+    }).catch((e) => {
+        document.querySelector("#loading-modal").classList.toggle("active");
+        window.location.href = window.location.origin + "/error/" + e.response.status;
     });
+}
 
+let downloadParams = null;
+
+document.querySelectorAll(".download-button").forEach((button) => {
+    button.addEventListener("click", (event) => {
+        downloadParams = event.target.dataset;
+        document.querySelector("#captcha-modal").classList.toggle("active");
+    });
+});
+
+function captchaCallback(token) {
+    document.querySelector("#captcha-modal").classList.toggle("active");
+    document.querySelector("#loading-modal").classList.toggle("active");
+
+    download(downloadParams.bookId, downloadParams.bookFormat, token);
 }

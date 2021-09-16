@@ -37,6 +37,10 @@
 		"lang": "Sprache",
 		"loading": {
 			"text": "Bitte warte einen Moment, während wir Deinen Download vorbereiten..."
+		},
+		"captcha": {
+			"title": "Sicherheitsüberprüfung",
+			"description": "Da wir aktuell sehr viel Traffic haben, müssen wir überprüfen, ob du eine echte Person bist."
 		}
 	},
 	"parts": "Kapitel",
@@ -45,6 +49,8 @@
 	"startReading": "Jetzt lesen",
 	"errors": {
 		"bookNotFound": "Leider konnten wir diese Geschichte nicht finden.",
-		"invalidSearch": "Leider konnten wir Deine Eingabe nicht verarbeiten.<br/>Bitte gebe einen Wattpad-Link oder die ID einer Geschichte an."
+		"invalidSearch": "Leider konnten wir Deine Eingabe nicht verarbeiten.<br/>Bitte gebe einen Wattpad-Link oder die ID einer Geschichte an.",
+		"tokenError": "Dein Captcha-Token ist ungültig.",
+		"serverError": "Das Buch konnte aufgrund eines internen Fehlers nicht abgerufen/konvertiert werden."
 	}
 }

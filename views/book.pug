@@ -24,10 +24,10 @@ block page
 
             p= book.description && book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description
 
-            button(onclick="download('" + book.id + "', 'epub')")= lang.book.download.epub
-            button(onclick="download('" + book.id + "', 'html')")= lang.book.download.html
+            button(class="download-button" data-book-id=book.id data-book-format="epub")= lang.book.download.epub
+            button(class="download-button" data-book-id=book.id data-book-format="html")= lang.book.download.html
 
-    di#loading-modal.modal
+    div#loading-modal.modal
         div
             h1!= lang.book.loading.text
             div.lds-ring
@@ -36,3 +36,9 @@ block page
                 div
                 div
                 div
+
+    div#captcha-modal.modal
+        div
+            h1= lang.book.captcha.title
+            p= lang.book.captcha.description
+            div(class="g-recaptcha" data-sitekey=captcha.sitekey data-callback="captchaCallback")

@@ -15,6 +15,10 @@ app.locals.ackee = {
 	detailed: process.env["ACKEE_DETAILED"] === "true"
 };
 
+app.locals.captcha = {
+	sitekey: process.env["RECAPTCHA_SITEKEY"]
+}
+
 // Static assets
 app.use(express.static("static"));
 

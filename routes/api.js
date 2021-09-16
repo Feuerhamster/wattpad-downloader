@@ -6,11 +6,12 @@ const stream = require("stream");
 const Wattpad = require("../services/wattpad");
 const Generator = require("../services/generator");
 const Translation = require("../services/translation");
+const CaptchaService = require("../services/captcha");
 
 /*
 * Get downloadable book
 * */
-router.get("/:id/download/:format", async (req, res) => {
+router.get("/:id/download/:format", CaptchaService.middleware, async (req, res) => {
 
 	// Check if format is available
 	if(!Generator.availableFormats.includes(req.params.format)) {
@@ -41,7 +42,14 @@ router.get("/:id/download/:format", async (req, res) => {
 
 	if(req.params.format === "epub") {
 
-		let epub = await Generator.epub(bookData, parts);
+		let epub;
+
+		try {
+			epub = await Generator.epub(bookData, parts);
+		} catch (e) {
+			console.error(e);
+			return res.status(500).end();
+		}
 
 		let fileContents = Buffer.from(epub, "base64");
 
@@ -55,7 +63,14 @@ router.get("/:id/download/:format", async (req, res) => {
 
 	} else if(req.params.format === "html") {
 
-		let html = await Generator.html(bookData, parts, langName, lang);
+		let html;
+
+		try {
+			html = await Generator.html(bookData, parts, langName, lang);
+		} catch (e) {
+			console.error(e);
+			return res.status(500).end();
+		}
 
 		res.set("Content-disposition", "attachment; filename=" + `${Wattpad.formatBookTitle(bookData.title)}-${bookData.id}.html`);
 		res.set("Content-Type", "text/html");

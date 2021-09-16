@@ -231,6 +231,12 @@ button:hover,
     font-size: 21px;
 }
 
+.modal > div > p {
+    margin: 0 0 20px 0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
 .active {
     display: flex!important;
 }

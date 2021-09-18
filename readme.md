@@ -14,8 +14,10 @@ This software based on Node.js and Express.js can fetch stories from Wattpad and
 5. Then run `npm start`
 
 ### Environment variables
-For the node app, to work properly, an .env file with the following values must be created in the project root, or they must be included in the environment variables.
+For the node app, to work properly, an .env file with the following values should be created in the project root, or they should be included in the environment variables.
 The app will start and work without, but it's recommended to set those variables.
+
+TLDR: All env variables are optional, but for full functionality, we recommend setting them.
 
 ```dotenv
 # Default port is 2200
@@ -29,6 +31,9 @@ ACKEE_DETAILED = true
 
 # Caching ttl in seconds for the wattpad api
 CACHE_TTL = 86400
+
+# Redis connection string (uses NodeCache if not set)
+REDIS_URI = redis://192.168.144.128:6379
 
 # Google ReCaptcha configuration
 RECAPTCHA_SITEKEY = your_site_key

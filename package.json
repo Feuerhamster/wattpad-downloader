@@ -12,6 +12,7 @@
     "jszip": "^3.5.0",
     "node-cache": "^5.1.2",
     "pug": "^3.0.2",
+    "redis": "^4.0.0-rc.1",
     "sanitize-html": "^2.4.0"
   },
   "scripts": {

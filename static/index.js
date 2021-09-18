@@ -42,7 +42,10 @@ if(searchform) {
 /*
 * Download a book
 * */
+let hasRecaptcha = document.querySelector('head > script[src*="recaptcha"]');
+
 function download(id, type, captchaToken) {
+    document.querySelector("#loading-modal").classList.toggle("active");
 
     axios({
         url: `${window.location.origin}/api/${id}/download/${type}?token=${captchaToken}`,
@@ -64,9 +67,10 @@ function download(id, type, captchaToken) {
 
         document.querySelector("#loading-modal").classList.toggle("active");
 
-        grecaptcha.reset();
+        if(hasRecaptcha) grecaptcha.reset();
 
     }).catch((e) => {
+        console.log(e);
         document.querySelector("#loading-modal").classList.toggle("active");
         window.location.href = window.location.origin + "/error/" + e.response.status;
     });
@@ -77,13 +81,17 @@ let downloadParams = null;
 document.querySelectorAll(".download-button").forEach((button) => {
     button.addEventListener("click", (event) => {
         downloadParams = event.target.dataset;
-        document.querySelector("#captcha-modal").classList.toggle("active");
+
+        if(hasRecaptcha) {
+            document.querySelector("#captcha-modal").classList.toggle("active");
+        } else {
+            download(downloadParams.bookId, downloadParams.bookFormat, null);
+        }
     });
 });
 
 function captchaCallback(token) {
     document.querySelector("#captcha-modal").classList.toggle("active");
-    document.querySelector("#loading-modal").classList.toggle("active");
 
     download(downloadParams.bookId, downloadParams.bookFormat, token);
 }

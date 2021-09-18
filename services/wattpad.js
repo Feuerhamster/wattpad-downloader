@@ -2,6 +2,7 @@
 const axios = require("axios");
 const NodeCache = require("node-cache");
 const sanitizeHtml = require("sanitize-html");
+const Cache = require("./cache.js");
 
 // Cache time to live
 let ttl = process.env["CACHE_TTL"];
@@ -11,7 +12,7 @@ let allowedTags = sanitizeHtml.defaults.allowedTags.filter((e) => e !== "u");
 
 class Wattpad {
 
-	static cache = new NodeCache({ stdTTL: ttl });
+	static cache = new Cache(ttl);
 
 	/**
 	 * Get a base64 image fron an url
@@ -39,8 +40,8 @@ class Wattpad {
 
 		let key = "bookbypart." + id;
 
-		if(Wattpad.cache.has(key)) {
-			return Wattpad.cache.get(key);
+		if(await Wattpad.cache.has(key)) {
+			return await Wattpad.cache.get(key);
 		}
 
 		try {
@@ -48,7 +49,7 @@ class Wattpad {
 			let res = await axios.get(`https://www.wattpad.com/v4/parts/${id}?fields=text_url,group(id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags)`,
 				{ headers: { accept: "application/json" }});
 
-			Wattpad.cache.set(key, res.data);
+			await Wattpad.cache.set(key, res.data);
 
 			return res.data;
 
@@ -67,8 +68,8 @@ class Wattpad {
 
 		let key = "book." + id;
 
-		if(Wattpad.cache.has(key)) {
-			return Wattpad.cache.get(key);
+		if(await Wattpad.cache.has(key)) {
+			return await Wattpad.cache.get(key);
 		}
 
 		try {
@@ -76,7 +77,7 @@ class Wattpad {
 			let res = await axios.get(`https://www.wattpad.com/api/v3/stories/${id}?fields=id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags`,
 				{ headers: { accept: "application/json" }});
 
-			Wattpad.cache.set(key, res.data);
+			await Wattpad.cache.set(key, res.data);
 
 			return res.data;
 
@@ -132,8 +133,8 @@ class Wattpad {
 				let key = "part." + part.id;
 				let text = null;
 
-				if(Wattpad.cache.has(key)) {
-					text = Wattpad.cache.get(key);
+				if(await Wattpad.cache.has(key)) {
+					text = await Wattpad.cache.get(key);
 				} else {
 					text = await axios.get(part.text_url.text);
 
@@ -141,7 +142,7 @@ class Wattpad {
 						allowedTags
 					});
 
-					Wattpad.cache.set(key, text);
+					await Wattpad.cache.set(key, text);
 				}
 
 				texts.push({

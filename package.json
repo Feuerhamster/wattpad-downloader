@@ -5,11 +5,11 @@
   "description": "A website to download wattpad stories",
   "main": "main.js",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsdom": "^16.2.2",
-    "jszip": "^3.5.0",
+    "jszip": "^3.7.0",
     "node-cache": "^5.1.2",
     "pug": "^3.0.2",
     "redis": "^4.0.0-rc.1",

@@ -20,29 +20,17 @@ router.use((req, res, next) => {
 /*
 * Homepage
 * */
-router.get("/", async (req, res) => {
-
-	res.render("home", req.trans);
-
-});
+router.get("/", async (req, res) => res.render("home", req.trans));
 
 /*
  * Help page
  */
-router.get("/help", (req, res) => {
-
-	res.render("help", req.trans);
-
-});
+router.get("/help", (req, res) => res.render("help", req.trans));
 
 /*
  * Privacy page
  */
-router.get("/privacy", (req, res) => {
-
-	res.render("privacy", req.trans);
-
-});
+router.get("/privacy", (req, res) => res.render("privacy", req.trans));
 
 /*
  * Error view
@@ -63,6 +51,10 @@ router.get(/^\/((b)-)?(\d+)$/, async (req, res) => {
 	} else {
 		book = await Wattpad.getBookByPartId(req.params[2]);
 		book = book ? book.group : null;
+	}
+
+	if(book.isPaywalled) {
+		return res.render("error", { error: "paywall", lang: req.trans.lang, langName: req.trans.langName });
 	}
 
 	if(book){

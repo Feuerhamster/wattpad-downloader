@@ -51,6 +51,7 @@
 		"bookNotFound": "Leider konnten wir diese Geschichte nicht finden.",
 		"invalidSearch": "Leider konnten wir Deine Eingabe nicht verarbeiten.<br/>Bitte gebe einen Wattpad-Link oder die ID einer Geschichte an.",
 		"tokenError": "Dein Captcha-Token ist ungültig.",
-		"serverError": "Das Buch konnte aufgrund eines internen Fehlers nicht abgerufen/konvertiert werden."
+		"serverError": "Das Buch konnte aufgrund eines internen Fehlers nicht abgerufen/konvertiert werden.",
+		"paywall": "Paid-Stories können nicht heruntergeladen werden."
 	}
 }

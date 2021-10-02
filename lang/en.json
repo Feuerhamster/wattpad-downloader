@@ -51,6 +51,7 @@
 		"bookNotFound": "Sorry but we can't find the book!",
 		"invalidSearch": "We can not parse your entered value.<br/> Please provide a wattpad link to a story or an ID.",
 		"tokenError": "Your Captcha-Token is invalid.",
-		"serverError": "The book could not be retrieved/converted due to an internal error."
+		"serverError": "The book could not be retrieved/converted due to an internal error.",
+		"paywall": "Paid-Stories aren't allowed for download."
 	}
 }

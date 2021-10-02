@@ -1,6 +1,5 @@
 // Import modules and services
 const axios = require("axios");
-const NodeCache = require("node-cache");
 const sanitizeHtml = require("sanitize-html");
 const Cache = require("./cache.js");
 
@@ -46,7 +45,7 @@ class Wattpad {
 
 		try {
 
-			let res = await axios.get(`https://www.wattpad.com/v4/parts/${id}?fields=text_url,group(id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags)`,
+			let res = await axios.get(`https://www.wattpad.com/v4/parts/${id}?fields=text_url,group(id,title,description,isPaywalled,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags)`,
 				{ headers: { accept: "application/json" }});
 
 			await Wattpad.cache.set(key, res.data);
@@ -74,7 +73,7 @@ class Wattpad {
 
 		try {
 
-			let res = await axios.get(`https://www.wattpad.com/api/v3/stories/${id}?fields=id,title,description,url,cover,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags`,
+			let res = await axios.get(`https://www.wattpad.com/api/v3/stories/${id}?fields=id,title,description,url,cover,isPaywalled,user(name,username,avatar),lastPublishedPart,parts(id,title,text_url),tags`,
 				{ headers: { accept: "application/json" }});
 
 			await Wattpad.cache.set(key, res.data);

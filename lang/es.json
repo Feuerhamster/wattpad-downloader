@@ -44,9 +44,6 @@
 		}
 	},
 	"parts": "Partes",
-	"overview": "Overview",
-	"next": "Next part",
-	"startReading": "Start reading",
 	"errors": {
 		"bookNotFound": "Lo sentimos, pero no podemos encontrar el libro.",
 		"invalidSearch": "No podemos analizar el valor introducido.<br/> Por favor, proporciona un enlace de wattpad a una historia o un ID.",

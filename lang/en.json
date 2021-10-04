@@ -44,9 +44,6 @@
 		}
 	},
 	"parts": "Parts",
-	"overview": "Overview",
-	"next": "Next part",
-	"startReading": "Start reading",
 	"errors": {
 		"bookNotFound": "Sorry but we can't find the book!",
 		"invalidSearch": "We can not parse your entered value.<br/> Please provide a wattpad link to a story or an ID.",

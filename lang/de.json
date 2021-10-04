@@ -44,9 +44,6 @@
 		}
 	},
 	"parts": "Kapitel",
-	"overview": "Übersicht",
-	"next": "Nächstes Kapitel",
-	"startReading": "Jetzt lesen",
 	"errors": {
 		"bookNotFound": "Leider konnten wir diese Geschichte nicht finden.",
 		"invalidSearch": "Leider konnten wir Deine Eingabe nicht verarbeiten.<br/>Bitte gebe einen Wattpad-Link oder die ID einer Geschichte an.",

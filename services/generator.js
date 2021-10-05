@@ -4,6 +4,7 @@ const JSZip = require("jszip");
 const axios = require("axios");
 
 const Wattpad = require("./wattpad");
+const { isNull } = require("util");
 
 class Generator {
 
@@ -78,8 +79,18 @@ class Generator {
 		ops.file("toc.ncx", toc);
 
 		// Chapters
-		for(let i = 0; i < parts.length; i++){
-			let chapter = pug.render(Generator.templates.chapter, parts[i]);
+		let regexImages = /https:\/\/img.wattpad.com\/+([^"]*)/g;
+
+		for(let i = 0; i < parts.length; i++) {
+			let { title, data } = parts[i];
+			let chapterImages = data.match(regexImages);
+
+			for(const imageUrl of chapterImages) {
+				let image = await Wattpad.getImage(imageUrl);
+				data = data.replace(imageUrl, `data:image/jpg;base64,${image}`);
+			}
+
+			let chapter = pug.render(Generator.templates.chapter, { title, data });
 			ops.file(`chapter${i}.xhtml`, chapter);
 		}
 

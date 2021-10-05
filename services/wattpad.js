@@ -7,7 +7,7 @@ const Cache = require("./cache.js");
 let ttl = process.env["CACHE_TTL"];
 ttl = ttl && ttl.match(/\d+/) ? parseInt(ttl, 10) : 86400;
 
-let allowedTags = sanitizeHtml.defaults.allowedTags.filter((e) => e !== "u");
+let allowedTags = sanitizeHtml.defaults.allowedTags.filter((e) => e !== "u").concat([ 'img' ]);
 
 class Wattpad {
 

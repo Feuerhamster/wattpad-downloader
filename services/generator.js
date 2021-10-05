@@ -83,11 +83,20 @@ class Generator {
 
 		for(let i = 0; i < parts.length; i++) {
 			let { title, data } = parts[i];
-			let chapterImages = data.match(regexImages);
+			let chapterImages = data.match(regexImages) || [];
 
-			for(const imageUrl of chapterImages) {
-				let image = await Wattpad.getImage(imageUrl);
-				data = data.replace(imageUrl, `data:image/jpg;base64,${image}`);
+			for(const image of chapterImages) {
+				let imageName = `${image.split('/').pop()}.jpg`;
+
+				try {
+					if(images.file(new RegExp(imageName)).length <= 0) {
+						let imageData = await axios.get(image, { responseType: "arraybuffer" });
+
+						images.file(imageName, Buffer.from(imageData.data));	
+					}
+				} catch (e) { }
+
+				data = data.replace(image, `images/${imageName}`);
 			}
 
 			let chapter = pug.render(Generator.templates.chapter, { title, data });

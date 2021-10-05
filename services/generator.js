@@ -2,9 +2,7 @@ const pug = require("pug");
 const fs = require("fs");
 const JSZip = require("jszip");
 const axios = require("axios");
-
 const Wattpad = require("./wattpad");
-const { isNull } = require("util");
 
 class Generator {
 

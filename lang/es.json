@@ -35,6 +35,7 @@
 		"author": "Autor",
 		"pubDate": "Publicado",
 		"lang": "Idioma",
+		"rateLimit": "Límite de descargas diarias",
 		"loading": {
 			"text": "Por favor espera unos segundos mientras se prepara tu descarga..."
 		},
@@ -49,6 +50,7 @@
 		"invalidSearch": "No podemos analizar el valor introducido.<br/> Por favor, proporciona un enlace de wattpad a una historia o un ID.",
 		"tokenError": "Su Captcha-Token no es válido.",
 		"serverError": "El libro no pudo ser recuperado/convertido debido a un error interno.",
-		"paywall": "Las historias de paga no se pueden descargar."
+		"paywall": "Las historias de paga no se pueden descargar.",
+		"rateLimit": "Has alcanzado el límite de descargas para hoy."
 	}
 }

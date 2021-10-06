@@ -4,17 +4,15 @@ const router = express.Router();
 
 const Wattpad = require("../services/wattpad");
 const Translation = require("../services/translation");
+const RateLimiter = require("../services/rateLimiter");
 
 /*
 * Language middleware to load translation
 * */
 router.use((req, res, next) => {
-
 	// Get the first accepted language of the specified languages from the accept-language header based on the available languages.
 	req.trans = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
-
 	next();
-
 });
 
 /*
@@ -57,8 +55,10 @@ router.get(/^\/((b)-)?(\d+)$/, async (req, res) => {
 		return res.render("error", { error: "paywall", lang: req.trans.lang, langName: req.trans.langName });
 	}
 
+	let limits = await RateLimiter.get(req.ip);
+
 	if(book){
-		res.render("book", { book, lang: req.trans.lang, langName: req.trans.langName });
+		res.render("book", { book, lang: req.trans.lang, langName: req.trans.langName, limits });
 	}else{
 		res.render("error", { error: "book_not_found", lang: req.trans.lang, langName: req.trans.langName });
 	}

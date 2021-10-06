@@ -1,10 +1,9 @@
 const NodeCache = require("node-cache");
-const {createClient} = require("redis");
+const Redis = require("ioredis");
 
 module.exports = class Cache {
     constructor(ttl) {
         this.ttl = ttl;
-        this.redis = null;
 
         if (process.env["REDIS_URI"]) {
             this._createRedisClient(process.env["REDIS_URI"])
@@ -14,17 +13,10 @@ module.exports = class Cache {
     }
 
     async _createRedisClient(url) {
-        this.redis = createClient({
-            socket: {
-                url: url
-            }
-        });
+        this.redis = new Redis(url);
 
-        this.redis.on("error", (err) => console.error("REDIS ERROR:", err));
-
-        await this.redis.connect();
-
-        console.log("REDIS:", "Connected");
+        this.redis.on("error", (err) => console.error("REDIS [CACHE] ERROR:", err));
+        this.redis.on("connect", () => console.log("REDIS [CACHE]: Connected"));
     }
 
     _checkIfJsonStr(str) {

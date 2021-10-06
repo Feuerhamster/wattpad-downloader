@@ -4,9 +4,11 @@ let dotenv = require("dotenv");
 const app = express();
 
 const Translation = require("./services/translation");
-Translation.loadLanguages();
+const RateLimiter = require("./services/rateLimiter");
 
+Translation.loadLanguages();
 dotenv.config();
+RateLimiter.init();
 
 app.locals.ackee = {
 	tracker: process.env["ACKEE_TRACKER"],
@@ -25,6 +27,8 @@ app.use(express.static("static"));
 // Views
 app.set("view engine", "pug");
 app.set("views", "views");
+app.set("trust proxy", process.env.PROXY === "true");
+app.set("x-powered-by", false);
 
 // Routes
 const api = require("./routes/api");

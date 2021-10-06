@@ -23,11 +23,18 @@ TLDR: All env variables are optional, but for full functionality, we recommend s
 # Default port is 2200
 PORT = 2200
 
+# Required if the app is running behind a reverse proxy like NGINX
+PROXY = true
+
 # Ackee configuration
 ACKEE_TRACKER = your_ackee_tracker_script_url
 ACKEE_SERVER = your_ackee_url
 ACKEE_DOMAIN_ID = your_ackee_domain_id
 ACKEE_DETAILED = true
+
+# Rate limiter configuration (duration in seconds)
+RATE_LIMIT_POINTS = 5
+RATE_LIMIT_DURATION = 86400
 
 # Caching ttl in seconds for the wattpad api
 CACHE_TTL = 86400
@@ -39,6 +46,9 @@ REDIS_URI = redis://192.168.144.128:6379
 RECAPTCHA_SITEKEY = your_site_key
 RECAPTCHA_SECRET = your_captcha_secret
 ```
+
+## Redis
+The Wattpad Downloader works completely without Redis, but it is recommended to have a central redis server running if you are clustering and scaling the software.
 
 ## Docker
 You can deploy the Wattpad Downloader with docker:

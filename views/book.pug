@@ -24,6 +24,13 @@ block page
 
             p= book.description && book.description.length > 550 ? book.description.substr(0, 550) + "..." : book.description
 
+            p.download-limit
+                span= lang.book.rateLimit
+                span :&nbsp;
+                strong= limits.remaining
+                span &nbsp;/&nbsp;
+                strong= limits.total
+
             button(class="download-button" data-book-id=book.id data-book-format="epub")= lang.book.download.epub
             button(class="download-button" data-book-id=book.id data-book-format="html")= lang.book.download.html
 

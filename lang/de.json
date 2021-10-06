@@ -38,6 +38,7 @@
 		"loading": {
 			"text": "Bitte warte einen Moment, während wir Deinen Download vorbereiten..."
 		},
+		"rateLimit": "Tägliches Download-Limit",
 		"captcha": {
 			"title": "Sicherheitsüberprüfung",
 			"description": "Da wir aktuell sehr viel Traffic haben, müssen wir überprüfen, ob du eine echte Person bist."
@@ -49,6 +50,7 @@
 		"invalidSearch": "Leider konnten wir Deine Eingabe nicht verarbeiten.<br/>Bitte gebe einen Wattpad-Link oder die ID einer Geschichte an.",
 		"tokenError": "Dein Captcha-Token ist ungültig.",
 		"serverError": "Das Buch konnte aufgrund eines internen Fehlers nicht abgerufen/konvertiert werden.",
-		"paywall": "Paid-Stories können nicht heruntergeladen werden."
+		"paywall": "Paid-Stories können nicht heruntergeladen werden.",
+		"rateLimit": "Du hast das Download-Limit für heute erreicht."
 	}
 }

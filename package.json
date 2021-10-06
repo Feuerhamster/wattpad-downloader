@@ -8,11 +8,12 @@
     "axios": "^0.21.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "ioredis": "^4.27.10",
     "jsdom": "^16.2.2",
     "jszip": "^3.7.0",
     "node-cache": "^5.1.2",
     "pug": "^3.0.2",
-    "redis": "^4.0.0-rc.1",
+    "rate-limiter-flexible": "^2.3.1",
     "sanitize-html": "^2.4.0"
   },
   "scripts": {

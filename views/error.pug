@@ -10,6 +10,8 @@ block page
             h1.error= lang.errors.tokenError
         else if error === "500"
             h1.error= lang.errors.serverError
+        else if error === "429"
+            h1.error= lang.errors.rateLimit
         else
             h1.error Unknown Error
 

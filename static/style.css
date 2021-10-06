@@ -195,6 +195,12 @@ button:hover,
     word-break: break-word;
 }
 
+.book-info p.download-limit {
+    margin-top: 0;
+    color: var(--color-orange);
+}
+
+
 .book-info button {
     font-size: 19px;
 }

@@ -7,6 +7,7 @@ const Wattpad = require("../services/wattpad");
 const Generator = require("../services/generator");
 const Translation = require("../services/translation");
 const CaptchaService = require("../services/captcha");
+const RateLimiter = require("../services/rateLimiter");
 
 /*
 * Get downloadable book
@@ -15,13 +16,19 @@ router.get("/:id/download/:format", CaptchaService.middleware, async (req, res) 
 
 	// Check if format is available
 	if(!Generator.availableFormats.includes(req.params.format)) {
-
 		res.status(400).send({ error: "unknown_format", formats: Generator.availableFormats });
 
 		console.log(`[${new Date().toISOString()}] Converter: user tried to convert story into "${req.params.format}"`);
 
 		return;
+	}
 
+	let allowed = await RateLimiter.consume(req.ip);
+
+	// Exceeded rate limit
+	if(!allowed) {
+		res.status(429).end();
+		return;
 	}
 
 	// Get book data
@@ -29,7 +36,7 @@ router.get("/:id/download/:format", CaptchaService.middleware, async (req, res) 
 
 	// Can't get book
 	if(!bookData) {
-		res.status(404).send({ error: "book_not_found" });
+		res.status(404).end();
 		return;
 	}
 
@@ -38,7 +45,6 @@ router.get("/:id/download/:format", CaptchaService.middleware, async (req, res) 
 
 	// Get language
 	let { lang, langName } = Translation.getTranslation(req.acceptsLanguages(Translation.langs));
-
 
 	if(req.params.format === "epub") {
 
@@ -80,7 +86,6 @@ router.get("/:id/download/:format", CaptchaService.middleware, async (req, res) 
 	}
 
 	console.log(`[${new Date().toISOString()}] Converted: "${bookData.title}" (${req.params.id}) to ${req.params.format} (${parts.length}/${bookData.parts.length} parts)`);
-
 });
 
 module.exports = router;

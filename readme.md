@@ -7,7 +7,7 @@ Download Wattpad stories for e-book readers, smartphones, desktop and more for f
 This software based on Node.js and Express.js can fetch stories from Wattpad and convert it into an EPUB file or a full functional HTML reader for offline availability.
 
 > ⚠ Important information  
-> Due to high user numbers and legal reasons, we had to shut down our official public instance of this project (https://wattpad.ml).
+> Due to high user numbers and legal reasons, we had to shut down our official public instance of this project (https://wattpad.ml).  
 > But we're not gone! You can quickly set up your own instance with the instructions below.
 
 ## Installation

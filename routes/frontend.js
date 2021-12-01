@@ -1,3 +1,4 @@
+npm install https://github.com/Feuerhamster/wattpad-downloader.git
 // import modules
 const express = require("express");
 const router = express.Router();

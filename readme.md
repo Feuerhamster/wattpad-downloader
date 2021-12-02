@@ -12,7 +12,7 @@ This software based on Node.js and Express.js can fetch stories from Wattpad and
 
 ## Prerequisites and information
 **This is a server software and NOT a simple app!**  
-It means that this software is meant to be installed on a server and then hooked into a network (for example, the Internet) so that other people can access the website through a browser.  
+It means that this software is meant to be installed on a server by a system administrator and then hooked into a network (for example, the Internet) so that other people can access the website through a browser.  
 The Wattpad Downloader is not a program or an app that everyone downloads individually and then simply executes.
 
 However, you can install it for local use on a PC with Windows, Mac or Linux.

@@ -109,7 +109,7 @@ EPUB is supported by many e-readers, and compatible software is available for mo
 The HTML file features an entire reader including the story (so people can read it offline).
 
 ## Main developers
-- [Feuerhamster](https://guthub.com/Feuerhamster)
+- [Feuerhamster](https://github.com/Feuerhamster)
 - [BluemediaGER](https://github.com/BluemediaGER)
 
 *We are not associated with Wattpad Corp. in any way.*

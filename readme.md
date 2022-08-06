@@ -69,9 +69,27 @@ RECAPTCHA_SECRET = your_captcha_secret
 The Wattpad Downloader works completely without Redis, but it is recommended to have a central redis server running if you are clustering and scaling the software.
 
 ## Docker
+<table>
+  <thead>
+    <tr>
+      <td align="left">
+        :warning: Notice
+      </td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td align="left">
+        The docker image is now hosted as <code>git.bluemedia.dev/bluemedia/wattpad-downloader</code>. The old registry name will continue to point to the current image for now, but may stop working at some point in the future.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 You can deploy the Wattpad Downloader with docker:
 ```bash
-docker run -d --name wattpad-dl -p 2200:2200 repo.bluemedia.dev/bluemedia/wattpad-downloader
+docker run -d --name wattpad-dl -p 2200:2200 git.bluemedia.dev/bluemedia/wattpad-downloader
 ```
 
 ## Project structure

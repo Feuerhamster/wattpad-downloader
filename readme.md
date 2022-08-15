@@ -24,6 +24,12 @@ If you have set it up properly, your terminal should output the URL that you can
 Why is this all so complicated for end users?
 > Because it is a server software meant to be hosted on the internet by system administrators, so others can easily access it over the internet with a browser (like our public instance that we had to shut down. https://wattpad.ml was exactly this software set up on our server).
 
+## Third party instances
+These are instances hosted by others, which we list here so that honest users can continue using this software.  
+⚠ We are not responsible for these instances and do not provide any guarantee or assume any liability.
+
+- https://Wattpad.CC by @MaximilianGT500
+
 ## Installation
 1. Clone / download the repository
 2. Go to the root directory of the project

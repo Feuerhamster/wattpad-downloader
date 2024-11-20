@@ -6,10 +6,10 @@
 ----
 
 > [!TIP]
-> # Android Guide (With Termux): [WPDL-Android](https://github.com/sipsuru/wp-downloader-android) <br/>
+> Android Guide (With Termux): [WPDL-Android](https://github.com/sipsuru/wp-downloader-android) <br/>
 
 > [!TIP]
-> # Desktop Version (Electron Wrap): [WPDL-Electron](https://github.com/sipsuru/wp-downloader-electron)
+> Desktop Version (Electron Wrap): [WPDL-Electron](https://github.com/sipsuru/wp-downloader-electron)
 
 ---
 

@@ -2,6 +2,18 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d96cbab4794140b8af375d85fcf5d524)](https://www.codacy.com/gh/Feuerhamster/wattpad-downloader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Feuerhamster/wattpad-downloader&amp;utm_campaign=Badge_Grade)
 [![Website Badge](https://img.shields.io/badge/website-https%3A%2F%2Fwattpad.ml-blue)](https://wattpad.ml)
 
+
+----
+
+> [!TIP]
+> # Android Guide (With Termux): [WPDL-Android](https://github.com/sipsuru/wp-downloader-android) <br/>
+
+> [!TIP]
+> # Desktop Version (Electron Wrap): [WPDL-Electron](https://github.com/sipsuru/wp-downloader-electron)
+
+---
+
+
 Download Wattpad stories for e-book readers, smartphones, desktop and more for free!
 
 This software based on Node.js and Express.js can fetch stories from Wattpad and convert it into an EPUB file or a full functional HTML reader for offline availability.

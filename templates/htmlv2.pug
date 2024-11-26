@@ -233,7 +233,7 @@ script.
 
 	window.addEventListener("click", (event) => {
 
-		if(!event.path.find((el) => el.id === "top-control" || el.id === "bottom-control")){
+		if(!event.composedPath().some((el) => el.id === "top-control" || el.id === "bottom-control")){
 			document.querySelector("#top-control").classList.toggle("active");
 			document.querySelector("#bottom-control").classList.toggle("active");
 		}

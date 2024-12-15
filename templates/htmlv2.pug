@@ -162,6 +162,7 @@ html(lang=langName)
 		meta(charset="UTF-8")
 		title= book.title
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(name="scroll-key" content= book.id)
 
 	body
 
@@ -209,7 +210,13 @@ html(lang=langName)
 
 script.
 	const fontList = ["Arial, sans-serif", "Verdana, sans-serif", "Cambria, serif", "cursive", "monospace"];
-	let scrollsave = localStorage.getItem("scrollsave");
+	const scrollKey = document.querySelector('meta[name="scroll-key"]')?.content;
+	let scrollsave;
+	if (scrollKey) {
+		scrollsave = localStorage.getItem(`scrollsave_${scrollKey}`);
+	} else {
+		console.warn("No scroll key defined in the HTML.");
+	}	
 	let fontsize = localStorage.getItem("fontsize");
 	let colormode = localStorage.getItem("colormode");
 	let font = localStorage.getItem("font");
@@ -255,7 +262,7 @@ script.
 		window.clearTimeout(isScrolling);
 
 		isScrolling = setTimeout(() => {
-			localStorage.setItem("scrollsave", currentScroll.toString());
+			localStorage.setItem(`scrollsave_${scrollKey}`, currentScroll.toString());
 		}, 80);
 
 	});
